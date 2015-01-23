@@ -9,28 +9,47 @@
 
 using namespace std;
 
-int main(int argc, char *argv[]){
-    string cmd;
-    int pid;
-    while(cmd != "exit"){
-        std::cout << "$ ";
-        cin >> cmd;
-
-        pid = fork();
-        if(pid > 0){
-            waitpid(pid,0,0);
-        }
-        else if(pid == 0){
-            std::cout << "This is the child process ";
-            if(-1 == execvp(argv[0], argv))
-                perror("There was an error in execvp. ");
-            exit(1);
-        }
-        else if(pid == -1){
-            perror("There was an error with for(). ");
-            exit(1);
-        }
+void parse(char *cd, char **par){
+    for(int i = 0; i < 11; i++){
+        par[i] = strsep(&cd, " ");
+        if(par[i] == NULL)
+            break;
     }
+}
 
+int ex(char** params){
+    int pid = fork();
+    if(pid == -1){
+        perror("There was an error with fork(). ");
+        exit(1);
+    }
+    else if(pid == 0){
+        execvp(params[0], params);
+        return 0;
+    }
+    else{
+        waitpid(pid, 0, 0);
+        return 1;
+    }
+}
+
+int main(int argc, char **argv){
+    char cmd[512];
+    char *par[11];
+
+    int counter = 0;
+    while(1){
+        std :: cout << "$ ";
+        if(fgets(cmd, sizeof(cmd), stdin) == NULL) break;
+        if(cmd[strlen(cmd) - 1] == '\n')
+            cmd[strlen(cmd) -1] = '\0';
+        parse(cmd, par);
+        if(strcmp(par[0], "exit")  == 0)
+            break;
+        if(ex(par) == 0)
+            break;
+    }
     return 0;
+
+
 }
