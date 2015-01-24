@@ -10,7 +10,7 @@
 using namespace std;
 
 void parse(char *cd, char **par){
-    for(int i = 0; i < 11; i++){
+    for(int i = 0; i < 512; i++){
         par[i] = strsep(&cd, " ");
         if(par[i] == NULL)
             break;
@@ -35,11 +35,13 @@ int ex(char** params){
 
 int main(int argc, char **argv){
     char cmd[512];
-    char *par[11];
+    char *par[512];
+
     int ending = 0;
     while(ending == 0){
         std :: cout << "$ ";
-        if(fgets(cmd, sizeof(cmd), stdin) == NULL) break;
+        if(fgets(cmd, sizeof(cmd), stdin) == NULL)
+            break;
         if(cmd[strlen(cmd) - 1] == '\n')
             cmd[strlen(cmd) -1] = '\0';
         parse(cmd, par);
