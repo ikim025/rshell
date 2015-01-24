@@ -17,14 +17,14 @@ void parse(char *cd, char **par){
     }
 }
 
-int ex(char** params){
+int ex(char** par){
     int pid = fork();
     if(pid == -1){
         perror("There was an error with fork(). ");
         exit(1);
     }
     else if(pid == 0){
-        execvp(params[0], params);
+        execvp(par[0], par);
         return 0;
     }
     else{
@@ -42,11 +42,9 @@ int main(int argc, char **argv){
         std :: cout << "$ ";
         cin >> cmd;
         if(cmd[strlen(cmd) - 1] == '\n')
-            cmd[strlen(cmd) -1] = '\0';
+            cmd[strlen(cmd) - 1] = '\0';
         parse(cmd, par);
-        if(strcmp(par[0], "exit")  == 0)
-            ending = 1;
-        if(ex(par) == 0)
+        if((cmd[0] == 'e' && cmd[1] == 'x' && cmd[2] == 'i' && cmd[3] == 't') || ex(par) == 0)
             ending = 1;
     }
     return 0;
