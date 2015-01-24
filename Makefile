@@ -1,3 +1,4 @@
+VPATH = src
 FLAGS = -ansi -pedantic -Wall -Werror
 CC = g++
 
@@ -8,3 +9,4 @@ rshell.o: rshell.cpp
 
 clean:
 	rm -rf *o rshell
+
