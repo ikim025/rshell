@@ -17,7 +17,7 @@
 3. git checkout hw0
 4. make
 5. bin/rshell
-21 #Bugs/Issues
+#Bugs/Issues
 ---
 * seems to have some errors on the spaces before the command
 * fails to have any comments or words after 'ls'
