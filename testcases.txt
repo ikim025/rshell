@@ -1,0 +1,32 @@
+ls
+ls -l
+ls -l -a -r
+ls 20a -l
+ls -mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
+ls .
+ls ls ls ls
+-l ls
+#nothing typed in
+fdanskfjasdjfasd ls <- error without doing ls
+ls #blah blah <- ignores everything after #
+fkdslafklsdafklsda
+ls
+ls               -a
+ls               -l               -a
+./a.out
+bin/rshell
+;
+;;;;;;;
+;&&;;;;||||
+&
+ls & ls
+ls && ls
+ls || ls
+true &&  ls
+false && ls
+true || ls
+false || ls
+true&&ls
+true           &&ls
+true &&
+&&true
