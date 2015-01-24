@@ -36,16 +36,17 @@ int ex(char** par){
 int main(int argc, char **argv){
     char cmd[512];
     char *par[11];
-    while(1){
+    int ending = 0;
+    while(ending == 0){
         std :: cout << "$ ";
         if(fgets(cmd, sizeof(cmd), stdin) == NULL) break;
         if(cmd[strlen(cmd) - 1] == '\n')
             cmd[strlen(cmd) -1] = '\0';
         parse(cmd, par);
         if(strcmp(par[0], "exit")  == 0)
-            break;
+            ending = 1;
         if(ex(par) == 0)
-            break;
+            ending = 1;
     }
     return 0;
 
