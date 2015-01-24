@@ -40,8 +40,7 @@ int main(int argc, char **argv){
     int ending = 0;
     while(ending == 0){
         std :: cout << "$ ";
-        if(fgets(cmd, sizeof(cmd), stdin) == NULL)
-            break;
+        cin >> cmd;
         if(cmd[strlen(cmd) - 1] == '\n')
             cmd[strlen(cmd) -1] = '\0';
         parse(cmd, par);
