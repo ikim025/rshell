@@ -36,8 +36,6 @@ int ex(char** params){
 int main(int argc, char **argv){
     char cmd[512];
     char *par[11];
-
-    int counter = 0;
     while(1){
         std :: cout << "$ ";
         if(fgets(cmd, sizeof(cmd), stdin) == NULL) break;

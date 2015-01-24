@@ -1,5 +1,10 @@
-VPATH = src
-CFLAGS = -ansi -pedantic -Wall -Werror
-OBJS = rshell.o
-DEBUG = -g
-all:
+FLAGS = -ansi -pedantic -Wall -Werror
+CC = g++
+
+all: rshell.o
+
+rshell.o: rshell.cpp
+	$(CC) $(FLAGS) rshell.cpp
+
+clean:
+	rm -rf *o rshell
