@@ -9,7 +9,7 @@
 
 #Installation guide
 ---
-* download all the files in the src folder
+* download all the files including Makefile
 * use the Makefile/ type make on the terminal(regular shell)
 
 #Bugs/Issues
