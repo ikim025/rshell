@@ -17,14 +17,14 @@ void parse(char *cd, char **par){
     }
 }
 
-int ex(char** params){
+int ex(char** par){
     int pid = fork();
     if(pid == -1){
         perror("There was an error with fork(). ");
         exit(1);
     }
     else if(pid == 0){
-        execvp(params[0], params);
+        execvp(par[0], par);
         return 0;
     }
     else{
