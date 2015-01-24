@@ -17,6 +17,7 @@
 3. git checkout hw0
 4. make
 5. bin/rshell
+
 #Bugs/Issues
 ---
 * seems to have some errors on the spaces before the command
