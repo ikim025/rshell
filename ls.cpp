@@ -16,9 +16,20 @@ void ls_a(char *loc){
 	struct dirent *mf;
 	struct stat ms;
 	md = opendir(loc);
+	if(md == NULL){
+		perror("opendir X");
+		exit(1);	
+	}
 	while((mf = readdir(md)) != NULL){
 		stat(mf -> d_name, &ms);
-		printf(" %s ", mf -> d_name);
+		struct stat tp;
+		stat(mf -> d_name, &tp);
+		if(S_ISDIR(tp.st_mode)){
+			printf("%s ", mf -> d_name);
+			std :: cout << "/";
+		}
+		else
+			printf(" %s ", mf -> d_name);
 	}
 	std :: cout << "\n";
 	closedir(md);
