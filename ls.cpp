@@ -11,7 +11,7 @@
 
 using namespace std;
 
-void ls_l(char *loc){	
+void ls_a(char *loc){	
 	DIR *md;
 	struct dirent *mf;
 	struct stat ms;
@@ -20,7 +20,7 @@ void ls_l(char *loc){
 	while((mf = readdir(md)) != NULL){
 		sprintf(temp,"%s/%s", loc, mf ->d_name);
 		stat(mf -> d_name, &ms);
-		printf(" %s\n", mf -> d_name);
+		printf(" %s ", mf -> d_name);
 	}
 	closedir(md);
 	return;
@@ -28,7 +28,7 @@ void ls_l(char *loc){
 
 int main(int argc, char **argv){
 	char cmd[] = "bin";
-	ls_l(cmd);
+	ls_a(cmd);
 	/*char cmd[512];
 	int ending = 0;
 	do{
