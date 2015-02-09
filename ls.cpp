@@ -10,6 +10,15 @@
 
 using namespace std;
 
+void print_directory(char const *nm, char const *real, bool cm){
+	DIR *dirp;
+	dirp = opendir(nm);
+	if(!dirp){
+		perror("opendir X");
+		return;
+	}
+}
+
 int main(int argc, char **argv){
 	char cmd[512];
 	int ending = 0;
@@ -19,4 +28,5 @@ int main(int argc, char **argv){
 	if(cmd[0] == 'e' && cmd[1] == 'x' && cmd[2] == 'i' && cmd[3] == 't')
 		ending = 1;
 	}while(ending == 0);
+	return 0;
 }
