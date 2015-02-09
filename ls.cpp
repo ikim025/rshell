@@ -15,8 +15,12 @@ void ls_l(char *loc){
 	DIR *md;
 	struct dirent *mf;
 	struct stat ms;
+	char temp[512];
 	md = opendir(loc);
 	while((mf = readdir(md)) != NULL){
+		sprintf(temp,"%s/%s", loc, mf ->d_name);
+		stat(mf -> d_name, &ms);
+		printf(" %s\n", mf -> d_name);
 	}
 	closedir(md);
 	return;
