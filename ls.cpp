@@ -31,16 +31,17 @@ void ls_a(char *loc){
 
 int main(int argc, char **argv){
 	char curr[] = "bin";
-	char cmd[512];
+	string cmd;
 	int ending = 0;
-	do{
-	printf("$ ");
+	while(ending == 0){
+	std :: cout << "$ ";
 	cin >> cmd;
-	if(cmd[0] == 'l' && cmd[1] == 's' && cmd[3] == '-' && cmd[4] == 'a')
+	if(cmd == "ls")
 		ls_a(curr);
-	else if(cmd[0] == 'e' && cmd[1] == 'x' && cmd[2] == 'i' && cmd[3] == 't')
+	else if(cmd == "exit")
 		ending = 1;
-	}while(ending == 0);
+	}
+	
 	return 0;
 
 }
