@@ -10,14 +10,6 @@
 
 using namespace std;
 
-void print_directory(char const *nm, char const *real, bool cm){
-	DIR *dirp;
-	dirp = opendir(nm);
-	if(!dirp){
-		perror("opendir X");
-		return;
-	}
-}
 
 int main(int argc, char **argv){
 	char cmd[512];
