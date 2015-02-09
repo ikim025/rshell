@@ -1,6 +1,7 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <sys/stat.h>
 #include <string>
 #include <string.h>
 #include <stdlib.h>
@@ -10,9 +11,21 @@
 
 using namespace std;
 
+void ls_l(char *loc){	
+	DIR *md;
+	struct dirent *mf;
+	struct stat ms;
+	md = opendir(loc);
+	while((mf = readdir(md)) != NULL){
+	}
+	closedir(md);
+	return;
+}
 
 int main(int argc, char **argv){
-	char cmd[512];
+	char cmd[] = "bin";
+	ls_l(cmd);
+	/*char cmd[512];
 	int ending = 0;
 	do{
 	printf("$ ");
@@ -21,4 +34,5 @@ int main(int argc, char **argv){
 		ending = 1;
 	}while(ending == 0);
 	return 0;
+*/
 }
