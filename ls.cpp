@@ -38,7 +38,7 @@ int main(int argc, char **argv){
 	cin >> cmd;
 	if(cmd[0] == 'l' && cmd[1] == 's' && cmd[3] == '-' && cmd[4] == 'a')
 		ls_a(curr);
-	if(cmd[0] == 'e' && cmd[1] == 'x' && cmd[2] == 'i' && cmd[3] == 't')
+	else if(cmd[0] == 'e' && cmd[1] == 'x' && cmd[2] == 'i' && cmd[3] == 't')
 		ending = 1;
 	}while(ending == 0);
 	return 0;
