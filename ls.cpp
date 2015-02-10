@@ -31,13 +31,14 @@ void ls_a(char *loc){
 
 
 void ls(const char *loc,){
-	DIR *md
+	DIR *md;
 	md = opendir(loc);
+	struct dirent *dp;
+	struct stat ms;
 	if(md == NULL){
 		perror("opendir X");
 		exit(1);
 	}
-	dirent *dp;
 	do{
 		
 	}while((dp = readdir(d)));
