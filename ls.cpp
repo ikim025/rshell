@@ -29,6 +29,11 @@ void ls_a(char *loc){
 	return;
 }*/
 
+
+void ls(const char *d,){
+
+}
+
 int main(int argc, char **argv){
 	
 	return 0;
