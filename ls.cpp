@@ -34,15 +34,14 @@ void ls(const char *loc){
 	DIR *md;
 	md = opendir(loc);
 	struct dirent *mf;
-	struct stat ms;
 	if(md == NULL){
 		perror("opendir X");
 		exit(1);
 	}
-	do{
-		printf("%s ", mf -> d_name);	
-	}while((dp = readdir(loc)));
-	if(-1 == closedir(loc)){
+	while((mf = readdir(md))){
+		printf(" %s ", mf -> d_name);	
+	}
+	if(closedir(md) == -1){
 		perror("closedir X");
 		exit(1);
 	}
@@ -50,7 +49,8 @@ void ls(const char *loc){
 }
 
 int main(int argc, char **argv){
-	
+	char loc[] = "bin";
+	ls(loc);	
 	return 0;
 
 }
