@@ -38,6 +38,9 @@ void ls(const char *loc,){
 		exit(1);
 	}
 	dirent *dp;
+	do{
+		
+	}while((dp = readdir(d)));
 }
 
 int main(int argc, char **argv){
