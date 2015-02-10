@@ -40,6 +40,10 @@ void ls(const char *loc, bool dasha){
 		exit(1);
 	}
 	while((mf = readdir(md))){
+		if(!dasha){
+			mf = readdir(md);
+			mf = readdir(md);
+		}
 		printf(" %s", mf -> d_name);
 		
 		if((fold = mf->d_type & DT_DIR))
