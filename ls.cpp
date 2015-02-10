@@ -10,7 +10,7 @@
 #include <dirent.h>
 
 using namespace std;
-
+/*
 void ls_a(char *loc){	
 	DIR *md;
 	struct dirent *mf;
@@ -27,20 +27,9 @@ void ls_a(char *loc){
 	std :: cout << "\n";
 	closedir(md);
 	return;
-}
+}*/
 
 int main(int argc, char **argv){
-	char curr[] = "bin";
-	string cmd;
-	int ending = 0;
-	while(ending == 0){
-	std :: cout << "$ ";
-	cin >> cmd;
-	if(cmd == "ls")
-		ls_a(curr);
-	else if(cmd == "exit")
-		ending = 1;
-	}
 	
 	return 0;
 
