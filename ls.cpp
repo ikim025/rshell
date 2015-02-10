@@ -30,18 +30,18 @@ void ls_a(char *loc){
 }*/
 
 
-void ls(const char *loc,){
+void ls(const char *loc){
 	DIR *md;
 	md = opendir(loc);
-	struct dirent *dp;
+	struct dirent *mf;
 	struct stat ms;
 	if(md == NULL){
 		perror("opendir X");
 		exit(1);
 	}
 	do{
-		
-	}while((dp = readdir(d)));
+		printf("%s ", mf -> d_name);	
+	}while((dp = readdir(loc)));
 }
 
 int main(int argc, char **argv){
