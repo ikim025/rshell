@@ -42,6 +42,11 @@ void ls(const char *loc){
 	do{
 		printf("%s ", mf -> d_name);	
 	}while((dp = readdir(loc)));
+	if(-1 == closedir(loc)){
+		perror("closedir X");
+		exit(1);
+	}
+	cout << endl;
 }
 
 int main(int argc, char **argv){
