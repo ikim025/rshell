@@ -30,8 +30,14 @@ void ls_a(char *loc){
 }*/
 
 
-void ls(const char *d,){
-
+void ls(const char *loc,){
+	DIR *md
+	md = opendir(loc);
+	if(md == NULL){
+		perror("opendir X");
+		exit(1);
+	}
+	dirent *dp;
 }
 
 int main(int argc, char **argv){
