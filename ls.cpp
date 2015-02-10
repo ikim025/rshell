@@ -60,7 +60,18 @@ void ls(const char *loc, bool dasha){
 
 int main(int argc, char **argv){
 	char loc[] = "bin";
-	ls(loc,true);	
+	int ending = 0;
+	char check[512];
+	while(ending == 0){
+		std :: cout << "$ ";
+		cin >> check;
+		if(check[0] == 'l' && check[1] == 's')
+			ls(loc,false);
+		else if(check[0] == 'e' && check[1] == 'x' && check[2] == 'i' && check[3] == 't')
+			ending = 1; 
+		else
+			ls(loc,true);
+	}
 	return 0;
 
 }
