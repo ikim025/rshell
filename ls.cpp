@@ -8,6 +8,8 @@
 #include <stdio.h>
 #include <iostream>
 #include <dirent.h>
+#include <boost/algorithm/string/predicate.hpp>
+#include <boost/lexical_cast.hpp>
 
 using namespace std;
 /*
@@ -41,8 +43,8 @@ void ls(const char *loc, bool dasha){
 	}
 	while((mf = readdir(md))){
 		if(!dasha){
-			mf = readdir(md);
-			mf = readdir(md);
+			if(boost::starts_with(mf -> d_name, ".") || boost::starts_with(mf -> d_name, ".."))
+				continue;
 		}
 		printf(" %s", mf -> d_name);
 		
@@ -58,7 +60,7 @@ void ls(const char *loc, bool dasha){
 
 int main(int argc, char **argv){
 	char loc[] = "bin";
-	ls(loc);	
+	ls(loc,true);	
 	return 0;
 
 }
