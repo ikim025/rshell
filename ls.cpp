@@ -30,16 +30,20 @@ void ls_a(char *loc){
 }*/
 
 
-void ls(const char *loc){
+void ls(const char *loc, bool dasha){
 	DIR *md;
 	md = opendir(loc);
 	struct dirent *mf;
+	bool fold;
 	if(md == NULL){
 		perror("opendir X");
 		exit(1);
 	}
 	while((mf = readdir(md))){
-		printf(" %s ", mf -> d_name);	
+		printf(" %s", mf -> d_name);
+		
+		if((fold = mf->d_type & DT_DIR))
+			cout << "/";
 	}
 	if(closedir(md) == -1){
 		perror("closedir X");
