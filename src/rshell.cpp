@@ -6,7 +6,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
-
+/*
 using namespace std;
 
 void parse(char *cd, char **par){
@@ -57,4 +57,4 @@ int main(int argc, char **argv){
 ///////////////////////////hw2
 
 
-}
+}*/
