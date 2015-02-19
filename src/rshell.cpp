@@ -2,10 +2,19 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <fcntl.h>
 #include <string>
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
+
+using namespace std;
+
+
+
+
+
+
 /*
 using namespace std;
 
