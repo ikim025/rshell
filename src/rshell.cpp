@@ -10,6 +10,10 @@
 
 using namespace std;
 
+char* dwhite(char *n){
+
+}
+
 void parse(char* buffer, char* arg[]){
 	char *temp = buffer;
 	while(*temp != '\0){
