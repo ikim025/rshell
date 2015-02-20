@@ -10,7 +10,12 @@
 
 using namespace std;
 
+void parse(char* buffer, char* arg[]){
+	
+}
+
 int main(){
+	
 	return 0;
 }
 
