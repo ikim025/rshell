@@ -12,8 +12,12 @@ using namespace std;
 
 void parse(char* buffer, char* arg[]){
 	char *temp = buffer;
-	int i = 0;
 	while(*temp != '\0){
+		if(*temp == '<'){
+			*temp = '\0';
+			temp++;
+			strcpy
+		}
 	}	
 }
 
