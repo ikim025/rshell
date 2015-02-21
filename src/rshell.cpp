@@ -11,7 +11,9 @@
 using namespace std;
 
 char* dwhite(char *n){
-
+	char d[] = {" \n\t<>"};
+	int i = strcspn(n,d);
+	for(
 }
 
 void parse(char* buffer, char* arg[]){
