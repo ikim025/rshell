@@ -19,14 +19,6 @@ char* dwhite(char *n){
 }
 
 void parse(char* buffer, char* arg[]){
-	char *temp = buffer;
-	while(*temp != '\0){
-		if(*temp == '<'){
-			*temp = '\0';
-			temp++;
-			strcpy
-		}
-	}	
 }
 
 int main(){
