@@ -12,8 +12,10 @@ using namespace std;
 
 char* dwhite(char *n){
 	char d[] = {" \n\t<>"};
-	int i = strcspn(n,d);
-	for(
+	for(i = strcspn(n,d);i == 0; i = strcspn(n,d)){
+	n++;
+	}
+	return strtok(n,d);
 }
 
 void parse(char* buffer, char* arg[]){
