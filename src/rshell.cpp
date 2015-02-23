@@ -27,6 +27,20 @@ char* dwhite(char *n){
 	return strtok(n,d);
 }
 
+void com(char* b, char*arg[]){
+	int counter = 0;
+	char d[] = " \t\n";
+	char *ck = strtok(b,d);
+	char * temp = NULL;
+	while(ck != temp){
+		arg[counter++] = ck;
+		//counter ++;
+		//ck++;
+		ck = strtok(temp,d);
+	}
+	arg[counter] = temp;
+}
+
 //io redirection/ check
 void iod(char* buffer){
 	char *temp = buffer;
@@ -50,20 +64,6 @@ void iod(char* buffer){
 		//else
 	temp++;
 	}
-}
-
-//
-void com(char* b, char* arg[]){
-	int i = 0;
-	char d[] = " \t\n";
-	char* counter = strtok(b,d);
-	char* temp = NULL;
-	while(counter != temp){
-		arg[i++] = counter;
-		//counter ++;
-		counter = strtok(temp,d);
-	}
-	arg[i] = temp;
 }
 
 //opening files
@@ -107,7 +107,6 @@ void cw(char* arg[], int pi[]){
 		perror("execution");
 	exit(1);
 }
-
 int main(){
 	char b[312];
 	char * arg[100];
