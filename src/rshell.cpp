@@ -66,32 +66,6 @@ void iod(char* buffer){
 	}
 }
 
-//opening files
-void opf(){
-	if(CTR1 == 1){
-		TRCK1 = open(A, O_RDONLY);
-		if(TRCK1 == -1)
-			perror("open");
-	}
-	if(CTR2 == 1){
-		TRCK2 = open(B, O_RDWR | O_CREAT, 0666);
-		if(TRCK2 == -1)
-			perror("open");
-	}
-}
-
-//closing files
-void clf(){
-	if(TRCK1 > 0){
-		if(close(TRCK1) == -1)
-			perror("close");
-	}
-	if(TRCK2 > 0){
-        	if(close(TRCK2) == -1)
-                	perror("close");
-        }
-}
-
 void cw(char* arg[], int pi[]){
 	if(TRCK1 > 0){
 		if(dup2(TRCK1,STDIN_FILENO) < 0)
@@ -121,7 +95,16 @@ int main(){
 		fgets(b, 312, stdin);
 	        iod(b);
 		com(b,arg);
-		opf();
+		if(CTR1 == 1){
+                	TRCK1 = open(A, O_RDONLY);
+                	if(TRCK1 == -1)
+                        	perror("open");
+        	}
+        	if(CTR2 == 1){
+                	TRCK2 = open(B, O_RDWR | O_CREAT, 0666);
+                	if(TRCK2 == -1)
+                        	perror("open");
+        	}
       		int pi[2];
         	if( pipe(pi) < 0)
                 	perror("pipe");
@@ -140,11 +123,19 @@ int main(){
                                  exit(-1);
                                  break;
         	}
+		if(TRCK1 > 0){
+         	       if(close(TRCK1) == -1)
+               	       		perror("close");
+        	}
+        	if(TRCK2 > 0){
+                	if(close(TRCK2) == -1)
+                        	perror("close");
+        	}
 		CTR1 = 0;
 		CTR2 = 0;
 		TRCK1 = 0;
 		TRCK2 = 0;
-		clf();
+		
 	}
 	return 0;
 }
