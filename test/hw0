@@ -1,0 +1,117 @@
+Script started on Mon Mar  9 14:07:30 2015
+~
+ikim025@hammer $ cd rshe[K[K[K[Kcs100/rshell
+~/cs100/rshell
+ikim025@hammer $ ls
+LICENSE  Makefile  README.md  [0m[38;5;27msrc[0m/  [38;5;27mtest[0m/
+[m~/cs100/rshell
+ikim025@hammer $ make
+mkdir bin || [-d bin]
+g++ -ansi -pedantic -Wall -Werror src/rshell.cpp -o bin/rshell
+g++ -ansi -pedantic -Wall -Werror src/ls.cpp -o bin/ls
+~/cs100/rshell
+ikim025@hammer $ bin/rshell
+ikim025@hammer.cs.ucr.edu$ eho  cho hello
+hello
+ikim025@hammer.cs.ucr.edu$ echo hello        echo hello
+hello echo hello
+ikim025@hammer.cs.ucr.edu$ echo            echo hello
+hello
+ikim025@hammer.cs.ucr.edu$ echo          hello
+hello
+ikim025@hammer.cs.ucr.edu$ echo hello;
+hello
+ikim025@hammer.cs.ucr.edu$ echo hello     ;
+hello
+ikim025@hammer.cs.ucr.edu$ e ; echo helo lo ;
+hello
+ikim025@hammer.cs.ucr.edu$ ;;;;
+ikim025@hammer.cs.ucr.edu$ echo hello ^^ e    && echo world
+hello
+world
+ikim025@hammer.cs.ucr.edu$ echo hello; echo world
+hello
+world
+ikim025@hammer.cs.ucr.edu$ echo h       hello && echo       world
+hello
+world
+ikim025@hammer.cs.ucr.edu$ echo hello && echo world ;;;;;;
+hello
+world
+ikim025@hammer.cs.ucr.edu$ echo     ls
+ls
+ikim025@hammer.cs.ucr.edu$ ls
+LICENSE  Makefile  README.md  bin  src	test
+ikim025@hammer.cs.ucr.edu$ ls -a
+.  ..  .git  LICENSE  Makefile	README.md  bin	src  test
+ikim025@hammer.cs.ucr.edu$ ls -l
+total 40
+-rw------- 1 ikim025 csmajs 18017 Feb 18 14:49 LICENSE
+-rw------- 1 ikim025 csmajs   240 Feb 22 23:28 Makefile
+-rw------- 1 ikim025 csmajs   553 Feb 23 09:50 README.md
+drwx------ 2 ikim025 csmajs  4096 Mar  9 14:03 bin
+drwx------ 2 ikim025 csmajs  4096 Mar  9 14:02 src
+drwx------ 2 ikim025 csmajs  4096 Mar  9 14:03 test
+ikim025@hammer.cs.ucr.edu$ ls -a  ; ls -l
+.  ..  .git  LICENSE  Makefile	README.md  bin	src  test
+total 40
+-rw------- 1 ikim025 csmajs 18017 Feb 18 14:49 LICENSE
+-rw------- 1 ikim025 csmajs   240 Feb 22 23:28 Makefile
+-rw------- 1 ikim025 csmajs   553 Feb 23 09:50 README.md
+drwx------ 2 ikim025 csmajs  4096 Mar  9 14:03 bin
+drwx------ 2 ikim025 csmajs  4096 Mar  9 14:02 src
+drwx------ 2 ikim025 csmajs  4096 Mar  9 14:03 test
+ikim025@hammer.cs.ucr.edu$ ls -a ;  ; echo hello w WORLLLDDDD ; ec  ls -l
+.  ..  .git  LICENSE  Makefile	README.md  bin	src  test
+hello WORLLLDDDD
+total 40
+-rw------- 1 ikim025 csmajs 18017 Feb 18 14:49 LICENSE
+-rw------- 1 ikim025 csmajs   240 Feb 22 23:28 Makefile
+-rw------- 1 ikim025 csmajs   553 Feb 23 09:50 README.md
+drwx------ 2 ikim025 csmajs  4096 Mar  9 14:03 bin
+drwx------ 2 ikim025 csmajs  4096 Mar  9 14:02 src
+drwx------ 2 ikim025 csmajs  4096 Mar  9 14:03 test
+ikim025@hammer.cs.ucr.edu$ l ech w  o wro  orld w e  ; echo world; echo world; echo world
+world
+world
+world
+world
+ikim025@hammer.cs.ucr.edu$ ls -l ls    ; ls    $ #ls-  -a
+total 40
+-rw------- 1 ikim025 csmajs 18017 Feb 18 14:49 LICENSE
+-rw------- 1 ikim025 csmajs   240 Feb 22 23:28 Makefile
+-rw------- 1 ikim025 csmajs   553 Feb 23 09:50 README.md
+drwx------ 2 ikim025 csmajs  4096 Mar  9 14:03 bin
+drwx------ 2 ikim025 csmajs  4096 Mar  9 14:02 src
+drwx------ 2 ikim025 csmajs  4096 Mar  9 14:03 test
+ikim025@hammer.cs.ucr.edu$ ls -l -a 
+total 52
+drwx------ 6 ikim025 csmajs  4096 Mar  9 14:03 .
+drwx------ 3 ikim025 csmajs  4096 Jan 23 22:57 ..
+drwx------ 8 ikim025 csmajs  4096 Mar  9 13:29 .git
+-rw------- 1 ikim025 csmajs 18017 Feb 18 14:49 LICENSE
+-rw------- 1 ikim025 csmajs   240 Feb 22 23:28 Makefile
+-rw------- 1 ikim025 csmajs   553 Feb 23 09:50 README.md
+drwx------ 2 ikim025 csmajs  4096 Mar  9 14:03 bin
+drwx------ 2 ikim025 csmajs  4096 Mar  9 14:02 src
+drwx------ 2 ikim025 csmajs  4096 Mar  9 14:03 test
+ikim025@hammer.cs.ucr.edu$ echo helllllllllllllllo; ls 44444 -a
+helllllllllllllllo
+ls: cannot access 44444: No such file or directory
+ikim025@hammer.cs.ucr.edu$ echo hello world ;  ; mkdir test    reshow
+hello world
+ikim025@hammer.cs.ucr.edu$ ls
+LICENSE  Makefile  README.md  bin  reshow  src	test
+ikim025@hammer.cs.ucr.edu$ echo hello ; && rm   mdir reshow
+hello
+ikim025@hammer.cs.ucr.edu$ ls
+LICENSE  Makefile  README.md  bin  src	test
+ikim025@hammer.cs.ucr.edu$ exit
+~/cs100/rshell
+ikim025@hammer $ quit
+bash: quit: command not found
+~/cs100/rshell
+ikim025@hammer $ exit
+exit
+
+Script done on Mon Mar  9 14:11:16 2015

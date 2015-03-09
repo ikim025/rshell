@@ -1,4 +1,142 @@
+#include <pwd.h>
+#include <sstream>
 #include <iostream>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <errno.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <cstring>
+#include <string>
+#include <vector>
+#include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
+
+#include <boost/tokenizer.hpp>
+#include <boost/algorithm/string/regex.hpp>
+
+using namespace std;
+
+//global
+typedef boost::tokenizer<boost::char_separator<char> > tokenizer;
+boost::char_separator<char> conn(";&|<>");
+boost::char_separator<char> space("\t\r\n\a ");
+
+
+
+
+char* dwhite(char *n){
+	char d[] = {" \n\t<>"};
+	int i = strcspn(n,d);
+	while(i == 0){
+		n++;
+		i = strcspn(n,d);
+	}
+	return strtok(n,d);
+}
+
+vector<vector<string> > parse(string &cmd, vector<int> list){
+    	vector<string> tk;
+    	for (unsigned i = 0; i < cmd.size(); i++){
+       		if (cmd[i] == ';') list.push_back(0);
+        	else if (cmd[i] == '|'){
+            		if (cmd[i+1] == '|') {
+                		i++;
+                		list.push_back(2);
+            		}
+            		else
+                		list.push_back(3);
+        	}
+        	else if ((cmd[i] == '&') && (cmd[i+1] == '&')){
+            		i++;
+            		list.push_back(1);
+        	}
+        	else if (cmd[i] == '<') list.push_back(4);
+        	else if (cmd[i] == '>'){
+            		if (cmd[i+1] == '>'){
+                		i++;
+                		list.push_back(6);
+            	}
+            	else list.push_back(5);
+        	}
+    }
+	vector<vector<string> > vk2;
+	vector<string> temp; 
+    	tokenizer tokens(cmd, conn);
+    	for (tokenizer::iterator z = tokens.begin(); z != tokens.end(); z++){ tk.push_back(*z); }
+    	for (unsigned j = 0; j < tk.size(); ++j){
+       		temp.clear();
+        	tokenizer spced(tk[j], space);
+        	for (tokenizer::iterator x = spced.begin(); x != spced.end(); x++){
+            		temp.push_back(*x);
+        	}
+        	vk2.push_back(temp);
+    	}
+    	return vk2;
+}
+
+
+void execute(vector<vector<string> > &vec, vector<int> &list){
+        int con = 0;
+	int cs = 0;
+	int pick = 0;
+    
+    	for(unsigned i = 0; i < vec.size(); i++){
+        	if (i < list.size())
+                con = list.at(i);
+        	else con = 0;
+        	if (con == 3 || con == 4 || con == 5 || con == 6) i+= pick;
+        		vector<char *> argument(vec[i].size() + 1);
+        		for(unsigned j = 0; j < vec[i].size(); ++j){
+        	    		argument[j] = &vec[i][j][0];
+        		}
+        	int pid = fork();
+        	switch(pid){
+            	  case -1:
+                	perror("fork");
+            	  	exit(1);
+		  case 0:
+                	if(execvp(vec[i][0].c_str(), argument.data()) == -1){
+                    		perror("execvp");
+                	}
+            	  default:
+                	if(wait(&cs) == -1){
+                    		perror("wait");
+                	}
+                	if((cs != 0 && con == 1) || (cs == 0 && con == 2)) return;
+        }
+    }
+}
+
+
+
+
+int main(){
+	char *user = getlogin();
+	char host[100]; 
+ 	gethostname(host,sizeof host);
+	while(1){
+        	string cmd;
+       		vector<vector<string> > final;
+       		std :: cout << user << "@" << host << "$ ";
+        	getline(cin,cmd);
+        	if(cmd == "exit") { return 0;}
+        	if(!cmd.empty()){
+            		cmd.erase(find(cmd.begin(), cmd.end(), '#'), cmd.end());
+            		vector<int> p;
+            		vector<vector<string> >final = parse(cmd,p);
+            		execute(final,p);
+		}
+	}
+	return 0;
+}
+
+
+
+
+/*#include <iostream>
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
@@ -143,7 +281,7 @@ int main(){
 
 
 
-/*
+
 using namespace std;
 
 void parse(char *cd, char **par){

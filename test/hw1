@@ -1,0 +1,172 @@
+Script started on Mon Mar  9 13:30:11 2015
+~
+ikim025@hammer $ cd r[Kcs100/rshell
+~/cs100/rshell
+ikim025@hammer $ ls
+LICENSE  Makefile  README.md  [0m[38;5;27msrc[0m/  [38;5;27mtest[0m/
+[m~/cs100/rshell
+ikim025@hammer $ make
+mkdir bin || [-d bin]
+g++ -ansi -pedantic -Wall -Werror src/rshell.cpp -o bin/rshell
+g++ -ansi -pedantic -Wall -Werror src/ls.cpp -o bin/ls
+~/cs100/rshell
+ikim025@hammer $ bin/ls [K
+Makefile	README.md	test/	src/	bin/	LICENSE	
+
+~/cs100/rshell
+ikim025@hammer $ bin [K/ls -l
+drwx------ 6 ikim025csmajs    4096 Mon Mar  9 13:25:51 2015
+ .
+drwx------ 3 ikim025csmajs    4096 Fri Jan 23 22:57:03 2015
+ .
+drwx------ 8 ikim025csmajs    4096 Mon Feb 23 10:05:27 2015
+ .
+-rw------- 1 ikim025csmajs     240 Sun Feb 22 23:28:05 2015
+ .
+-rw------- 1 ikim025csmajs     553 Mon Feb 23 09:50:00 2015
+ .
+drwx------ 2 ikim025csmajs    4096 Mon Mar  9 13:25:45 2015
+ .
+drwx------ 2 ikim025csmajs    4096 Mon Mar  9 13:25:10 2015
+ .
+drwx------ 2 ikim025csmajs    4096 Mon Mar  9 13:25:53 2015
+ .
+-rw------- 1 ikim025csmajs   18017 Wed Feb 18 14:49:13 2015
+ .
+~/cs100/rshell
+ikim025@hammer $ bin/;s[K[Kls -a
+./	../	.git/	Makefile	README.md	test/	src/	bin/	LICENSE	
+
+~/cs100/rshell
+ikim025@hammer $ bin/;s[K[Kls -a -l
+drwx------ 6 ikim025csmajs    4096 Mon Mar  9 13:25:51 2015
+ .
+drwx------ 3 ikim025csmajs    4096 Fri Jan 23 22:57:03 2015
+ .
+drwx------ 8 ikim025csmajs    4096 Mon Feb 23 10:05:27 2015
+ .
+-rw------- 1 ikim025csmajs     240 Sun Feb 22 23:28:05 2015
+ .
+-rw------- 1 ikim025csmajs     553 Mon Feb 23 09:50:00 2015
+ .
+drwx------ 2 ikim025csmajs    4096 Mon Mar  9 13:25:45 2015
+ .
+drwx------ 2 ikim025csmajs    4096 Mon Mar  9 13:25:10 2015
+ .
+drwx------ 2 ikim025csmajs    4096 Mon Mar  9 13:25:53 2015
+ .
+-rw------- 1 ikim025csmajs   18017 Wed Feb 18 14:49:13 2015
+ .
+~/cs100/rshell
+ikim025@hammer $ bin/ls ls [K[K[K-l -l
+drwx------ 6 ikim025csmajs    4096 Mon Mar  9 13:25:51 2015
+ .
+drwx------ 3 ikim025csmajs    4096 Fri Jan 23 22:57:03 2015
+ .
+drwx------ 8 ikim025csmajs    4096 Mon Feb 23 10:05:27 2015
+ .
+-rw------- 1 ikim025csmajs     240 Sun Feb 22 23:28:05 2015
+ .
+-rw------- 1 ikim025csmajs     553 Mon Feb 23 09:50:00 2015
+ .
+drwx------ 2 ikim025csmajs    4096 Mon Mar  9 13:25:45 2015
+ .
+drwx------ 2 ikim025csmajs    4096 Mon Mar  9 13:25:10 2015
+ .
+drwx------ 2 ikim025csmajs    4096 Mon Mar  9 13:25:53 2015
+ .
+-rw------- 1 ikim025csmajs   18017 Wed Feb 18 14:49:13 2015
+ .
+~/cs100/rshell
+ikim025@hammer $ bin /[K[K/ls 0[K-R
+Makefile	README.md	test/	src/	bin/	LICENSE	
+
+~/cs100/rshell
+ikim025@hammer $ bin/ls -L[Kl -R
+drwx------ 6 ikim025csmajs    4096 Mon Mar  9 13:25:51 2015
+ .
+drwx------ 3 ikim025csmajs    4096 Fri Jan 23 22:57:03 2015
+ .
+drwx------ 8 ikim025csmajs    4096 Mon Feb 23 10:05:27 2015
+ .
+-rw------- 1 ikim025csmajs     240 Sun Feb 22 23:28:05 2015
+ .
+-rw------- 1 ikim025csmajs     553 Mon Feb 23 09:50:00 2015
+ .
+drwx------ 2 ikim025csmajs    4096 Mon Mar  9 13:25:45 2015
+ .
+drwx------ 2 ikim025csmajs    4096 Mon Mar  9 13:25:10 2015
+ .
+drwx------ 2 ikim025csmajs    4096 Mon Mar  9 13:25:53 2015
+ .
+-rw------- 1 ikim025csmajs   18017 Wed Feb 18 14:49:13 2015
+ .
+~/cs100/rshell
+ikim025@hammer $ bin/ls -a -l
+drwx------ 6 ikim025csmajs    4096 Mon Mar  9 13:25:51 2015
+ .
+drwx------ 3 ikim025csmajs    4096 Fri Jan 23 22:57:03 2015
+ .
+drwx------ 8 ikim025csmajs    4096 Mon Feb 23 10:05:27 2015
+ .
+-rw------- 1 ikim025csmajs     240 Sun Feb 22 23:28:05 2015
+ .
+-rw------- 1 ikim025csmajs     553 Mon Feb 23 09:50:00 2015
+ .
+drwx------ 2 ikim025csmajs    4096 Mon Mar  9 13:25:45 2015
+ .
+drwx------ 2 ikim025csmajs    4096 Mon Mar  9 13:25:10 2015
+ .
+drwx------ 2 ikim025csmajs    4096 Mon Mar  9 13:25:53 2015
+ .
+-rw------- 1 ikim025csmajs   18017 Wed Feb 18 14:49:13 2015
+ .
+~/cs100/rshell
+ikim025@hammer $ bin/ls a[K-a -a -a -l 
+drwx------ 6 ikim025csmajs    4096 Mon Mar  9 13:25:51 2015
+ .
+drwx------ 3 ikim025csmajs    4096 Fri Jan 23 22:57:03 2015
+ .
+drwx------ 8 ikim025csmajs    4096 Mon Feb 23 10:05:27 2015
+ .
+-rw------- 1 ikim025csmajs     240 Sun Feb 22 23:28:05 2015
+ .
+-rw------- 1 ikim025csmajs     553 Mon Feb 23 09:50:00 2015
+ .
+drwx------ 2 ikim025csmajs    4096 Mon Mar  9 13:25:45 2015
+ .
+drwx------ 2 ikim025csmajs    4096 Mon Mar  9 13:25:10 2015
+ .
+drwx------ 2 ikim025csmajs    4096 Mon Mar  9 13:25:53 2015
+ .
+-rw------- 1 ikim025csmajs   18017 Wed Feb 18 14:49:13 2015
+ .
+~/cs100/rshell
+ikim025@hammer $ /b[K[Kbin/ls -l -a -a -a
+drwx------ 6 ikim025csmajs    4096 Mon Mar  9 13:25:51 2015
+ .
+drwx------ 3 ikim025csmajs    4096 Fri Jan 23 22:57:03 2015
+ .
+drwx------ 8 ikim025csmajs    4096 Mon Feb 23 10:05:27 2015
+ .
+-rw------- 1 ikim025csmajs     240 Sun Feb 22 23:28:05 2015
+ .
+-rw------- 1 ikim025csmajs     553 Mon Feb 23 09:50:00 2015
+ .
+drwx------ 2 ikim025csmajs    4096 Mon Mar  9 13:25:45 2015
+ .
+drwx------ 2 ikim025csmajs    4096 Mon Mar  9 13:25:10 2015
+ .
+drwx------ 2 ikim025csmajs    4096 Mon Mar  9 13:25:53 2015
+ .
+-rw------- 1 ikim025csmajs   18017 Wed Feb 18 14:49:13 2015
+ .
+~/cs100/rshell
+ikim025@hammer $ bin/ls -l[Ka -R
+./	../	.git/	Makefile	README.md	test/	src/	bin/	LICENSE	
+
+~/cs100/rshell
+ikim025@hammer $ exit
+exit
+
+Script done on Mon Mar  9 13:33:07 2015
