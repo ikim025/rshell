@@ -1,0 +1,130 @@
+Script started on Tue Mar 10 15:16:17 2015
+~
+ikim025@hammer $ cd te[K[Kfinal/test[K[K[K[Krshell
+~/final/rshell
+ikim025@hammer $ source /opt/rh/devtoolset-2/enable
+~/final/rshell
+ikim025@hammer $ make
+#source /opt/rh/devtoolset-2/enable
+mkdir bin || [-d bin]
+g++ -ansi -pedantic -Wall -Werror -std=c++11 src/rshell.cpp -o bin/rshell
+g++ -ansi -pedantic -Wall -Werror -std=c++11 src/ls.cpp -o bin/ls
+~/final/rshell
+ikim025@hammer $ bin/ls[K[Krhse[K[K[Kshell
+ikim025@hammer.cs.ucr.edu:/home/csmajs/ikim025/final/rshell$ ls
+LICENSE  Makefile  README.md  bin  src	test
+ikim025@hammer.cs.ucr.edu:/home/csmajs/ikim025/final/rshell$ cd
+ikim025@hammer.cs.ucr.edu:/home/csmajs/ikim025$ ls
+C:\nppdf32Log\debuglog.txt   a.out		    engr1_hk2_ikim025.doc  machine_status.asm
+Desktop			     all_machines_busy.asm  ex1			   main
+Documents		     all_machines_free	    ex1.o		   main.cpp
+Downloads		     all_machines_free.asm  ex2.cpp		   menu.asm
+Instinct_Reference_Full.pdf  assn3.tgz		    ex2.o		   num_busy_machines.asm
+Music			     assn5		    ex3			   num_free_machines.asm
+Pictures		     assn6.asm		    ex3.o		   practice
+Public			     assn6.tgz		    f			   q.log
+Templates		     b.cpp		    final		   src
+Untitled 1.odt		     cs010		    first_free.asm
+Videos			     cs10		    geany_run_script.sh
+a.cpp			     cs100		    lab5_given.cpp
+ikim025@hammer.cs.ucr.edu:/home/csmajs/ikim025$ cd final
+ikim025@hammer.cs.ucr.edu:/home/csmajs/ikim025/final$ ls
+rshell
+ikim025@hammer.cs.ucr.edu:/home/csmajs/ikim025/final$ cd rshell
+ikim025@hammer.cs.ucr.edu:/home/csmajs/ikim025/final/rshell$ ls
+LICENSE  Makefile  README.md  bin  src	test
+ikim025@hammer.cs.ucr.edu:/home/csmajs/ikim025/final/rshell$ cd ~/f      cd/home      /home
+ikim025@hammer.cs.ucr.edu:/home$ ls
+csmajs
+ikim025@hammer.cs.ucr.edu:/home$ cd ~/r final
+ikim025@hammer.cs.ucr.edu:/home/csmajs/ikim025/final$ ls
+rshell
+ikim025@hammer.cs.ucr.edu:/home/csmajs/ikim025/final$ cd rsh hell
+ikim025@hammer.cs.ucr.edu:/home/csmajs/ikim025/final/rshell$ ls
+LICENSE  Makefile  README.md  bin  src	test
+ikim025@hammer.cs.ucr.edu:/home/csmajs/ikim025/final/rshell$ cd /home     src
+ikim025@hammer.cs.ucr.edu:/home/csmajs/ikim025/final/rshell/src$ cd
+ikim025@hammer.cs.ucr.edu:/home/csmajs/ikim025$ cd final/rshell/src
+ikim025@hammer.cs.ucr.edu:/home/csmajs/ikim025/final/rshell/src$ cd /home/cj smajs/ik   /
+ikim025@hammer.cs.ucr.edu:/home/csmajs$ cd ikim025/r fianl/    nal/rshell/src   src
+ikim025@hammer.cs.ucr.edu:/home/csmajs/ikim025/final/rshell/src$ ls
+ls.cpp	rshell.cpp
+ikim025@hammer.cs.ucr.edu:/home/csmajs/ikim025/final/rshell/src$ cd /home/csmajs/
+ikim025@hammer.cs.ucr.edu:/home/csmajs$ ls
+ls: cannot open directory .: Permission denied
+ikim025@hammer.cs.ucr.edu:/home/csmajs$ cd /hom    ikim025/
+ikim025@hammer.cs.ucr.edu:/home/csmajs/ikim025$ ls
+C:\nppdf32Log\debuglog.txt   a.out		    engr1_hk2_ikim025.doc  machine_status.asm
+Desktop			     all_machines_busy.asm  ex1			   main
+Documents		     all_machines_free	    ex1.o		   main.cpp
+Downloads		     all_machines_free.asm  ex2.cpp		   menu.asm
+Instinct_Reference_Full.pdf  assn3.tgz		    ex2.o		   num_busy_machines.asm
+Music			     assn5		    ex3			   num_free_machines.asm
+Pictures		     assn6.asm		    ex3.o		   practice
+Public			     assn6.tgz		    f			   q.log
+Templates		     b.cpp		    final		   src
+Untitled 1.odt		     cs010		    first_free.asm
+Videos			     cs10		    geany_run_script.sh
+a.cpp			     cs100		    lab5_given.cpp
+ikim025@hammer.cs.ucr.edu:/home/csmajs/ikim025$ ls
+C:\nppdf32Log\debuglog.txt   a.out		    engr1_hk2_ikim025.doc  machine_status.asm
+Desktop			     all_machines_busy.asm  ex1			   main
+Documents		     all_machines_free	    ex1.o		   main.cpp
+Downloads		     all_machines_free.asm  ex2.cpp		   menu.asm
+Instinct_Reference_Full.pdf  assn3.tgz		    ex2.o		   num_busy_machines.asm
+Music			     assn5		    ex3			   num_free_machines.asm
+Pictures		     assn6.asm		    ex3.o		   practice
+Public			     assn6.tgz		    f			   q.log
+Templates		     b.cpp		    final		   src
+Untitled 1.odt		     cs010		    first_free.asm
+Videos			     cs10		    geany_run_script.sh
+a.cpp			     cs100		    lab5_given.cpp
+ikim025@hammer.cs.ucr.edu:/home/csmajs/ikim025$ cd final
+ikim025@hammer.cs.ucr.edu:/home/csmajs/ikim025/final$ ls
+rshell
+ikim025@hammer.cs.ucr.edu:/home/csmajs/ikim025/final$ cd ~/ikim025/        final/rshel/src
+chdir: No such file or directory
+ikim025@hammer.cs.ucr.edu:/home/csmajs/ikim025/final$ ls
+rshell
+ikim025@hammer.cs.ucr.edu:/home/csmajs/ikim025/final$ cd ~/
+ikim025@hammer.cs.ucr.edu:/home/csmajs/ikim025$ cd ~/final/rshel/sr   l/src
+ikim025@hammer.cs.ucr.edu:/home/csmajs/ikim025/final/rshell/src$ ls
+ls.cpp	rshell.cpp
+ikim025@hammer.cs.ucr.edu:/home/csmajs/ikim025/final/rshell/src$ cd .c .
+ikim025@hammer.cs.ucr.edu:/home/csmajs/ikim025/final/rshell$ cd ..
+ikim025@hammer.cs.ucr.edu:/home/csmajs/ikim025/final$ cd ..
+ikim025@hammer.cs.ucr.edu:/home/csmajs/ikim025$ cd ..
+ikim025@hammer.cs.ucr.edu:/home/csmajs$ cd ..
+ikim025@hammer.cs.ucr.edu:/home$ cd ..
+ikim025@hammer.cs.ucr.edu:/$ cd ..
+ikim025@hammer.cs.ucr.edu:/$ cd home
+ikim025@hammer.cs.ucr.edu:/home$ cd csmajs
+ikim025@hammer.cs.ucr.edu:/home/csmajs$ cd ikim025
+ikim025@hammer.cs.ucr.edu:/home/csmajs/ikim025$ ls
+C:\nppdf32Log\debuglog.txt   a.out		    engr1_hk2_ikim025.doc  machine_status.asm
+Desktop			     all_machines_busy.asm  ex1			   main
+Documents		     all_machines_free	    ex1.o		   main.cpp
+Downloads		     all_machines_free.asm  ex2.cpp		   menu.asm
+Instinct_Reference_Full.pdf  assn3.tgz		    ex2.o		   num_busy_machines.asm
+Music			     assn5		    ex3			   num_free_machines.asm
+Pictures		     assn6.asm		    ex3.o		   practice
+Public			     assn6.tgz		    f			   q.log
+Templates		     b.cpp		    final		   src
+Untitled 1.odt		     cs010		    first_free.asm
+Videos			     cs10		    geany_run_script.sh
+a.cpp			     cs100		    lab5_given.cpp
+ikim025@hammer.cs.ucr.edu:/home/csmajs/ikim025$ cd ..
+ikim025@hammer.cs.ucr.edu:/home/csmajs$ ls
+ls: cannot open directory .: Permission denied
+ikim025@hammer.cs.ucr.edu:/home/csmajs$ cd ..
+ikim025@hammer.cs.ucr.edu:/home$ ls
+csmajs
+ikim025@hammer.cs.ucr.edu:/home$ cd /home/s csmajs/ikim025/final/rshell
+ikim025@hammer.cs.ucr.edu:/home/csmajs/ikim025/final/rshell$ ls
+LICENSE  Makefile  README.md  bin  src	test
+ikim025@hammer.cs.ucr.edu:/home/csmajs/ikim025/final/rshell$ exit
+~/final/rshell
+ikim025@hammer $ q[Kexit
+exit
+
+Script done on Tue Mar 10 15:23:30 2015
