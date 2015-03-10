@@ -26,13 +26,13 @@ hello
 ikim025@hammer.cs.ucr.edu$ e ; echo helo lo ;
 hello
 ikim025@hammer.cs.ucr.edu$ ;;;;
-ikim025@hammer.cs.ucr.edu$ echo hello ^^ e    && echo world
+ikim025@hammer.cs.ucr.edu$ echo hello     && echo world
 hello
 world
 ikim025@hammer.cs.ucr.edu$ echo hello; echo world
 hello
 world
-ikim025@hammer.cs.ucr.edu$ echo h       hello && echo       world
+ikim025@hammer.cs.ucr.edu$ echo        hello && echo       world
 hello
 world
 ikim025@hammer.cs.ucr.edu$ echo hello && echo world ;;;;;;

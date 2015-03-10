@@ -19,10 +19,25 @@
 
 using namespace std;
 
+
 //global
 typedef boost::tokenizer<boost::char_separator<char> > tokenizer;
 boost::char_separator<char> conn(";&|<>");
 boost::char_separator<char> space("\t\r\n\a ");
+
+string curr_d(){
+	char currd[BUFSIZ];
+	if(!getcwd(currd,sizeof(currd)) != NULL) perror("getcwd");
+	return currd;
+}
+
+void handler(int num){
+	if(num == SIGINT){}
+}
+
+
+
+
 
 
 
@@ -114,6 +129,10 @@ void execute(vector<vector<string> > &vec, vector<int> &list){
 
 
 int main(){
+	string current = curr_d();
+	cout << "current dir : " << current << endl;
+/*
+
 	char *user = getlogin();
 	char host[100]; 
  	gethostname(host,sizeof host);
@@ -129,7 +148,7 @@ int main(){
             		vector<vector<string> >final = parse(cmd,p);
             		execute(final,p);
 		}
-	}
+	}*/
 	return 0;
 }
 
