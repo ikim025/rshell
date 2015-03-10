@@ -23,7 +23,7 @@ ikim025@hammer.cs.ucr.edu$ echo hello;
 hello
 ikim025@hammer.cs.ucr.edu$ echo hello     ;
 hello
-ikim025@hammer.cs.ucr.edu$ e ; echo helo lo ;
+ikim025@hammer.cs.ucr.edu$  ; echo helo lo ;
 hello
 ikim025@hammer.cs.ucr.edu$ ;;;;
 ikim025@hammer.cs.ucr.edu$ echo hello     && echo world
