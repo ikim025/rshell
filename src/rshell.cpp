@@ -105,7 +105,9 @@ void child_pro(string cmd, char **argv){
 	string previous = "..";
 	vector <string> path_list;
 	string envstring = getenv("PATH");
-	if(cmd.front() == '.'){
+	string check = cmd;
+	check.resize(1);
+	if(check == "."){
 		if(cmd.compare(0,previous.length(),previous) == 0){
 			while(path.back() != '/'){ path.pop_back(); }
 			path += cmd.substr(2);
@@ -190,7 +192,7 @@ void execute(vector<vector<string> > &vec, vector<int> &list){
                 	/*if(execvp(vec[i][0].c_str(), argument.data()) == -1){
                     		perror("execvp");
                 	}*/
-			child_pro(vec.at(i).at(j),argument.data());
+			child_pro(vec.at(i).at(0),argument.data());
 
             	  default:
                 	if(wait(&cs) == -1){
