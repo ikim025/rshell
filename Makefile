@@ -1,5 +1,5 @@
 VPATH = src
-FLAGS = -ansi -pedantic -Wall -Werror
+FLAGS = -ansi -pedantic -Wall -Werror -std=c++11
 CC = g++
 
 all: rshell.o ls.o

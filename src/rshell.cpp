@@ -205,8 +205,6 @@ void execute(vector<vector<string> > &vec, vector<int> &list){
 
 int main(){
 
-	char *pa = getenv("PATH");
-	
 
 	char *user = getlogin();
 	char host[100]; 
