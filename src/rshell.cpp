@@ -13,6 +13,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <signal.h>
 
 #include <boost/tokenizer.hpp>
 #include <boost/algorithm/string/regex.hpp>
@@ -22,22 +23,28 @@ using namespace std;
 
 //global
 typedef boost::tokenizer<boost::char_separator<char> > tokenizer;
-boost::char_separator<char> conn(";&|<>");
-boost::char_separator<char> space("\t\r\n\a ");
+boost :: char_separator<char> conn(";&|<>");
+boost :: char_separator<char> space("\t\r\n\a ");
+boost :: char_separator<char> ck(":");
 
 string curr_d(){
 	char currd[BUFSIZ];
-	if(!getcwd(currd,sizeof(currd)) != NULL) perror("getcwd");
+	getcwd(currd,sizeof(currd));
+	//if(!getcwd(currd,sizeof(currd)) != NULL) perror("getcwd");
+	if(currd == NULL) perror("getcwd");
 	return currd;
 }
 
 void handler(int num){
-	if(num == SIGINT){}
+        if(num == SIGINT) signal(SIGINT, SIG_IGN);
+        if(num == SIGTSTP) raise(SIGSTOP);
 }
 
 
-
-
+void sigcheck(){
+	if(signal(SIGINT, handler) == SIG_ERR) perror("SIGINT");
+	if(signal(SIGTSTP, handler) == SIG_ERR) perror("SIGTSTP");
+}
 
 
 
@@ -92,30 +99,98 @@ vector<vector<string> > parse(string &cmd, vector<int> list){
     	return vk2;
 }
 
+void child_pro(string cmd, char **argv){
+	string curr;
+	string path = curr_d();
+	string previous = "..";
+	vector <string> path_list;
+	string envstring = getenv("PATH");
+	if(cmd.front() == '.'){
+		if(cmd.compare(0,previous.length(),previous) == 0){
+			while(path.back() != '/'){ path.pop_back(); }
+			path += cmd.substr(2);
+		}
+		else path += cmd.substr(1);
+		if(execv(path.c_str(), argv) == -1) perror("execv");
+	}
+	else{
+		tokenizer tk(envstring,ck);
+		for(tokenizer :: iterator i = tk.begin(); i != tk.end(); i++){
+			path_list.push_back(*i);
+		}
+		if(path_list.back().back() == '.') path_list.back().pop_back();
+		for(unsigned i = 0; i < path_list.size(); i++){
+			curr = path_list.at(i) + '/' + cmd;
+			execv(curr.c_str(), argv);
+		}
+	}
+}
 
 void execute(vector<vector<string> > &vec, vector<int> &list){
-        int con = 0;
+	int con = 0;
 	int cs = 0;
 	int pick = 0;
-    
+	string path;
+	string previous = "..";
+	string temp;
+    	char * envstring = getenv("HOME");
     	for(unsigned i = 0; i < vec.size(); i++){
-        	if (i < list.size())
+		path = curr_d();
+		if(vec.at(i).at(0) == "cd"){
+			if(vec.at(i).size() >= 2){
+				temp = vec.at(i).at(1);
+				temp.resize(1);
+			}
+			if(temp == "\0") {
+				if(chdir(envstring) == -1) perror("chdir.home");
+				continue;
+			}
+			else{
+				if(temp == "~"){
+					path = getenv("HOME");
+					//path = getenv("PATH");
+					//path = getenv("PATH") + vec.at(i).at(1).substr(1);
+					path += vec.at(i).at(1).substr(1);
+					if(chdir(path.c_str()) == -1) perror("chdir");
+				}
+				else if(temp == "/"){
+					if(chdir(vec.at(i).at(1).c_str()) == -1) perror("chdir");
+				}
+                        	else if(temp == "."){
+                                	if(vec[i][1].compare(0,previous.length(), previous) == 0){
+                                        	while(path.back() != '/') { path.pop_back(); }
+                                        	path += vec[i][1].substr(2);
+                                	}
+                                	else path += vec[i][1].substr(1);
+                                	if(chdir(path.c_str()) == -1) perror("chdir");
+				}	
+                        	else{
+                                	path += '/' + vec[i][1];
+                                	if(chdir(path.c_str()) == -1) perror("chdir");
+				}
+				continue;
+			}
+		}
+
+		if (i < list.size())
                 con = list.at(i);
         	else con = 0;
-        	if (con == 3 || con == 4 || con == 5 || con == 6) i+= pick;
-        		vector<char *> argument(vec[i].size() + 1);
-        		for(unsigned j = 0; j < vec[i].size(); ++j){
-        	    		argument[j] = &vec[i][j][0];
-        		}
+        	if (con > 2 && con <6) i+= pick;
+        	vector<char *> argument(vec[i].size() + 1);
+        	for(unsigned j = 0; j < vec[i].size(); ++j){
+        	   	argument[j] = &vec[i][j][0];
+        	}
         	int pid = fork();
         	switch(pid){
             	  case -1:
                 	perror("fork");
             	  	exit(1);
 		  case 0:
-                	if(execvp(vec[i][0].c_str(), argument.data()) == -1){
+                	/*if(execvp(vec[i][0].c_str(), argument.data()) == -1){
                     		perror("execvp");
-                	}
+                	}*/
+			child_pro(vec[i][0],argument.data());
+
             	  default:
                 	if(wait(&cs) == -1){
                     		perror("wait");
@@ -129,26 +204,31 @@ void execute(vector<vector<string> > &vec, vector<int> &list){
 
 
 int main(){
-	string current = curr_d();
-	cout << "current dir : " << current << endl;
-/*
+
+	char *pa = getenv("PATH");
+	
 
 	char *user = getlogin();
 	char host[100]; 
  	gethostname(host,sizeof host);
+	
+	string path = curr_d();
 	while(1){
-        	string cmd;
+		path = curr_d();
+		vector<int> p;
+		string cmd;
        		vector<vector<string> > final;
-       		std :: cout << user << "@" << host << "$ ";
+       		std :: cout << user << "@" << host 
+			    << ":" << path << "$ ";
         	getline(cin,cmd);
         	if(cmd == "exit") { return 0;}
+		sigcheck();
         	if(!cmd.empty()){
             		cmd.erase(find(cmd.begin(), cmd.end(), '#'), cmd.end());
-            		vector<int> p;
             		vector<vector<string> >final = parse(cmd,p);
             		execute(final,p);
 		}
-	}*/
+	}
 	return 0;
 }
 

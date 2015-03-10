@@ -1,6 +1,8 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <ctime>
+#include <locale>
 #include <sys/stat.h>
 #include <string>
 #include <algorithm>
@@ -89,22 +91,40 @@ void print(char *dir, vector<bool> &flag){
 	cout << endl << endl;
 }
 
-void l_flag(char *dir){
+void l_flag(char *dir,vector<bool> &flag){
 	//DIR *md;
 	DIR *md = opendir(dir);
 	struct dirent *mf;
 	struct stat ms;
 	//diropen(dir,md);
 	while((mf = readdir(md))){
+		/*if(stat(mf->d_name, &ms) == -1){
+                        perror("stat");
+                        exit(1);
+                }*/
+		string path = dir;	
+		path += "/";
+		path += mf -> d_name;
+		stat(path.c_str(), &ms);
+		//string curr = mf -> d_name;
+		string curr (mf -> d_name);
+		
+		if(!flag.at(0)){
+                       if(boost:: starts_with(curr, ".") || boost :: starts_with(curr, ".."))
+                                continue;
+                }
+/*	
 		if(stat(mf->d_name, &ms) == -1){
 			perror("stat");
 			exit(1);
 		}
-		if(S_ISLNK(ms.st_mode))
-			cout << "l";
-		else if(S_ISDIR(ms.st_mode))
-			cout << 'd';
+*/			
+	
+	
+		if (S_ISDIR(ms.st_mode)) cout << 'd';
+		else if(S_ISLNK(ms.st_mode)) cout << "l";
 		else cout << "-";
+
 		cout << ((ms.st_mode & S_IRUSR) ? 'r' : '-') << ((ms.st_mode & S_IWUSR) ? 'w' : '-')
 		     << ((ms.st_mode & S_IXUSR) ? 'x' : '-') << ((ms.st_mode & S_IRGRP) ? 'r' : '-')
 		     << ((ms.st_mode & S_IWGRP) ? 'w' : '-') << ((ms.st_mode & S_IXGRP) ? 'x' : '-')
@@ -120,9 +140,19 @@ void l_flag(char *dir){
 		if(pass == NULL){
 			perror("getpwuid");
 		}
-		cout << pass -> pw_name << grp -> gr_name << right << setw(8) 
-		     << ms.st_size << " " << ctime(&ms.st_mtime) << " " 
-		     << basename(dir) << endl;
+		char s[1000];
+		time_t t = time(NULL);
+
+
+
+
+
+			cout << pass -> pw_name << " "<< grp -> gr_name << right << setw(8) 
+		     << ms.st_size << " ";
+		if(strftime(s,sizeof(s), "%A, %c", localtime(&t))) 
+			cout << s;
+
+			cout  << " " <<  mf-> d_name << endl;
 	}
 	if(closedir(md) == -1){
 		perror("closedir");
@@ -137,12 +167,31 @@ int main(int argc, char * argv[]){
 	AFLAG = false;
 	RFLAG = false;
 	vector<char *> file;
-	vector< char*> di;
-	vector<bool> flag(3, false);
-	flagc(argc, argv, file, di, flag);
-	char dir[] = ".";
-	(flag.at(2)) ? l_flag(dir) : print(dir,flag);
+	vector<char *> di;
+	vector<char *>fold;
+	vector<bool> flag(3,false);
 
+        flagc(argc, argv, file, di, flag);
+
+
+
+	char *temp;
+        for(int i = 1; i < argc; i++){
+                temp = argv[i];
+                if(temp[0] != '-'){
+                       fold.push_back(temp);
+                }
+	}
+	if(fold.size() != 0){
+		for(unsigned i = 0; i < fold.size(); i++){
+			if(LFLAG) l_flag(fold.at(i),flag);
+			else print(fold.at(i),flag);
+		}
+	}
+	else{
+	char dir[] = ".";
+	(flag.at(2)) ? l_flag(dir,flag) : print(dir,flag);
+	}
 /*
 	vector<char *> input;
 	vector<string>d;
