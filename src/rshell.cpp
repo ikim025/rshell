@@ -157,15 +157,16 @@ void execute(vector<vector<string> > &vec, vector<int> &list){
 					if(chdir(vec.at(i).at(1).c_str()) == -1) perror("chdir");
 				}
                         	else if(temp == "."){
-                                	if(vec[i][1].compare(0,previous.length(), previous) == 0){
+                                	//if(vec.a
+					if(vec.at(i).at(1).compare(0,previous.length(), previous) == 0){
                                         	while(path.back() != '/') { path.pop_back(); }
-                                        	path += vec[i][1].substr(2);
+                                        	path += vec.at(i).at(1).substr(2);
                                 	}
-                                	else path += vec[i][1].substr(1);
+                                	else path += vec.at(i).at(1).substr(1);
                                 	if(chdir(path.c_str()) == -1) perror("chdir");
 				}	
                         	else{
-                                	path += '/' + vec[i][1];
+                                	path += '/' + vec.at(i).at(1);
                                 	if(chdir(path.c_str()) == -1) perror("chdir");
 				}
 				continue;
@@ -176,9 +177,9 @@ void execute(vector<vector<string> > &vec, vector<int> &list){
                 con = list.at(i);
         	else con = 0;
         	if (con > 2 && con <6) i+= pick;
-        	vector<char *> argument(vec[i].size() + 1);
-        	for(unsigned j = 0; j < vec[i].size(); ++j){
-        	   	argument[j] = &vec[i][j][0];
+        	vector<char *> argument(vec.at(i).size() + 1);
+        	for(unsigned j = 0; j < vec.at(i).size(); ++j){
+        	   	argument.at(j) = &vec[i][j][0];
         	}
         	int pid = fork();
         	switch(pid){
@@ -189,7 +190,7 @@ void execute(vector<vector<string> > &vec, vector<int> &list){
                 	/*if(execvp(vec[i][0].c_str(), argument.data()) == -1){
                     		perror("execvp");
                 	}*/
-			child_pro(vec[i][0],argument.data());
+			child_pro(vec.at(i).at(j),argument.data());
 
             	  default:
                 	if(wait(&cs) == -1){

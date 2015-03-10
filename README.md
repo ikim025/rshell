@@ -4,6 +4,10 @@
 
 #How to use
 ---
+* you must enable c11 in order to run rshell
+* in UCR computer, you can
+* source /opt/rh/devtoolset-2/enable 
+* previously before the actually program
 * In order to end the project, you must press CONTROL + C
 * Example code is included
 
