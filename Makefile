@@ -16,3 +16,4 @@ ls.o: ls.cpp
 
 clean:
 	rm -rf bin
+

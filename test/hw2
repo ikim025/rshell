@@ -1,0 +1,115 @@
+Script started on Mon Mar 23 11:19:21 2015
+[?1034hbash-3.2$ cd ..
+bash-3.2$ make
+#source /opt/rh/devtoolset-2/enable
+mkdir bin || [-d bin]
+g++ -ansi -pedantic -Wall -Werror -std=c++11 src/rshell.cpp -o bin/rshell
+g++ -ansi -pedantic -Wall -Werror -std=c++11 src/ls.cpp -o bin/ls
+bash-3.2$ bin/rshell
+iankimm@Ians-MacBook-Pro.local:/Users/iankimm/Desktop/reshow/rshell$ echo hello world > out
+iankimm@Ians-MacBook-Pro.local:/Users/iankimm/Desktop/reshow/rshell$ cat out
+hello world
+iankimm@Ians-MacBook-Pro.local:/Users/iankimm/Desktop/reshow/rshell$ echo w he  hi my name is Ian > out    > out
+iankimm@Ians-MacBook-Pro.local:/Users/iankimm/Desktop/reshow/rshell$ echo out
+out
+iankimm@Ians-MacBook-Pro.local:/Users/iankimm/Desktop/reshow/rshell$ ech   cat out
+hello world
+hi my name is Ian
+iankimm@Ians-MacBook-Pro.local:/Users/iankimm/Desktop/reshow/rshell$ echo overwrite everything > out
+iankimm@Ians-MacBook-Pro.local:/Users/iankimm/Desktop/reshow/rshell$ cat out
+overwrite everything
+iankimm@Ians-MacBook-Pro.local:/Users/iankimm/Desktop/reshow/rshell$ a echo appending>  >  > out
+iankimm@Ians-MacBook-Pro.local:/Users/iankimm/Desktop/reshow/rshell$ cat out
+overwrite everything
+appending
+iankimm@Ians-MacBook-Pro.local:/Users/iankimm/Desktop/reshow/rshell$ ca  t Makefile |
+iankimm@Ians-MacBook-Pro.local:/Users/iankimm/Desktop/reshow/rshell$ cat Makefile
+VPATH = src
+FLAGS = -ansi -pedantic -Wall -Werror -std=c++11
+CC = g++
+C11 = source/ opt/rh/devtoolset-2/enable
+
+all: rshell.o ls.o
+
+
+rshell.o: rshell.cpp
+	#source /opt/rh/devtoolset-2/enable
+	mkdir bin || [-d bin]
+	$(CC) $(FLAGS) src/rshell.cpp -o bin/rshell
+
+ls.o: ls.cpp
+	$(CC) $(FLAGS) src/ls.cpp -o bin/ls
+
+clean:
+	rm -rf bin
+
+iankimm@Ians-MacBook-Pro.local:/Users/iankimm/Desktop/reshow/rshell$ cat Make    e k file      efk ile | cat Makefile
+VPATH = src
+FLAGS = -ansi -pedantic -Wall -Werror -std=c++11
+CC = g++
+C11 = source/ opt/rh/devtoolset-2/enable
+
+all: rshell.o ls.o
+
+
+rshell.o: rshell.cpp
+	#source /opt/rh/devtoolset-2/enable
+	mkdir bin || [-d bin]
+	$(CC) $(FLAGS) src/rshell.cpp -o bin/rshell
+
+ls.o: ls.cpp
+	$(CC) $(FLAGS) src/ls.cpp -o bin/ls
+
+clean:
+	rm -rf bin
+
+cat: Mak: No such file or directory
+cat: efile: No such file or directory
+iankimm@Ians-MacBook-Pro.local:/Users/iankimm/Desktop/reshow/rshell$ k ls 
+LICENSE		README.md	out		test
+Makefile	bin		src
+iankimm@Ians-MacBook-Pro.local:/Users/iankimm/Desktop/reshow/rshell$ ls | grep E
+LICENSE
+README.md
+iankimm@Ians-MacBook-Pro.local:/Users/iankimm/Desktop/reshow/rshell$ ls | grep o
+out
+iankimm@Ians-MacBook-Pro.local:/Users/iankimm/Desktop/reshow/rshell$ ls |grep E | grep R
+README.md
+iankimm@Ians-MacBook-Pro.local:/Users/iankimm/Desktop/reshow/rshell$ ls  \ |grepE  E\ |grep R
+README.md
+iankimm@Ians-MacBook-Pro.local:/Users/iankimm/Desktop/reshow/rshell$ ls|grepE
+exevp : No such file or directory
+iankimm@Ians-MacBook-Pro.local:/Users/iankimm/Desktop/reshow/rshell$ ls |grep     grep M
+Makefile
+README.md
+iankimm@Ians-MacBook-Pro.local:/Users/iankimm/Desktop/reshow/rshell$ g++ main.cpp 2> out
+iankimm@Ians-MacBook-Pro.local:/Users/iankimm/Desktop/reshow/rshell$ cat out
+clang: error: no such file or directory: 'main.cpp'
+clang: error: no input files
+iankimm@Ians-MacBook-Pro.local:/Users/iankimm/Desktop/reshow/rshell$ cat < out | tr A_ -Z  |  | ^[[D^[[D^[[D^[[D^[[D                                    out < ou        out | tr A-Z a-z | tee out1 | tr a-z a A-Z > out2
+cat: <out: No such file or directory
+iankimm@Ians-MacBook-Pro.local:/Users/iankimm/Desktop/reshow/rshell$ ls
+LICENSE		README.md	out		out2		test
+Makefile	bin		out1		src
+iankimm@Ians-MacBook-Pro.local:/Users/iankimm/Desktop/reshow/rshell$ cat out1
+iankimm@Ians-MacBook-Pro.local:/Users/iankimm/Desktop/reshow/rshell$ cat out2
+iankimm@Ians-MacBook-Pro.local:/Users/iankimm/Desktop/reshow/rshell$ cat out
+clang: error: no such file or directory: 'main.cpp'
+clang: error: no input files
+iankimm@Ians-MacBook-Pro.local:/Users/iankimm/Desktop/reshow/rshell$ cat out   > < out | tr A-Z a-z \ | e tee out1 | tr a-z A-Z > out2
+out2
+iankimm@Ians-MacBook-Pro.local:/Users/iankimm/Desktop/reshow/rshell$ cat out1 
+clang: error: no such file or directory: 'main.cpp'
+clang: error: no input files
+iankimm@Ians-MacBook-Pro.local:/Users/iankimm/Desktop/reshow/rshell$ cat out2
+CLANG: ERROR: NO SUCH FILE OR DIRECTORY: 'MAIN.CPP'
+CLANG: ERROR: NO INPUT FILES
+iankimm@Ians-MacBook-Pro.local:/Users/iankimm/Desktop/reshow/rshell$ cat     echo extra credit rocks | cat
+extra credit rocks
+iankimm@Ians-MacBook-Pro.local:/Users/iankimm/Desktop/reshow/rshell$ cat <<< "extra credit rocks"
+extra credit rocks
+iankimm@Ians-MacBook-Pro.local:/Users/iankimm/Desktop/reshow/rshell$ exit
+bash-3.2$ exit
+exit
+
+Script done on Mon Mar 23 11:27:23 2015

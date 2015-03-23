@@ -1,172 +1,901 @@
-Script started on Mon Mar  9 13:30:11 2015
-~
-ikim025@hammer $ cd r[Kcs100/rshell
-~/cs100/rshell
-ikim025@hammer $ ls
-LICENSE  Makefile  README.md  [0m[38;5;27msrc[0m/  [38;5;27mtest[0m/
-[m~/cs100/rshell
-ikim025@hammer $ make
+Script started on Mon Mar 23 07:58:33 2015
+[?1034hbash-3.2$ ls
+hw0		hw1		hw3		test.txt
+bash-3.2$ cd ..
+bash-3.2$ ls
+LICENSE		Makefile	README.md	src		test
+bash-3.2$ make
+#source /opt/rh/devtoolset-2/enable
 mkdir bin || [-d bin]
-g++ -ansi -pedantic -Wall -Werror src/rshell.cpp -o bin/rshell
-g++ -ansi -pedantic -Wall -Werror src/ls.cpp -o bin/ls
-~/cs100/rshell
-ikim025@hammer $ bin/ls [K
-Makefile	README.md	test/	src/	bin/	LICENSE	
+g++ -ansi -pedantic -Wall -Werror -std=c++11 src/rshell.cpp -o bin/rshell
+g++ -ansi -pedantic -Wall -Werror -std=c++11 src/ls.cpp -o bin/ls
+bash-3.2$ bin/ls
+[32m[34mbin[0m        LICENSE[0m    Makefile[0m   README.md[0m  [32m[34msrc[0m        [32m[34mtest[0m       
+bash-3.2$ bin/ls -a
+[32m[34m.[0m          .DS_Store[0m  [32m[34mbin[0m        LICENSE[0m    [32m[34msrc[0m        
+[32m[34m..[0m         [32m[34m.git[0m       Makefile[0m   README.md[0m  [32m[34mtest[0m       
+bash-3.2$ bin/ls -l
+total 56
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 07:59 [32m[34mbin[0m
+-rw-r--r--   1 iankimm  staff       18017 Mar 23 01:01 LICENSE[0m
+-rw-r--r--   1 iankimm  staff         331 Mar 23 01:04 Makefile[0m
+-rw-r--r--   1 iankimm  staff         699 Mar 23 01:01 README.md[0m
+drwxr-xr-x   6 iankimm  staff         204 Mar 23 07:57 [32m[34msrc[0m
+drwxr-xr-x   6 iankimm  staff         204 Mar 23 07:58 [32m[34mtest[0m
+bash-3.2$ bin/ls -r[KR
+[32m[34mbin[0m        LICENSE[0m    Makefile[0m   README.md[0m  [32m[34msrc[0m        [32m[34mtest[0m       
 
-~/cs100/rshell
-ikim025@hammer $ bin [K/ls -l
-drwx------ 6 ikim025csmajs    4096 Mon Mar  9 13:25:51 2015
- .
-drwx------ 3 ikim025csmajs    4096 Fri Jan 23 22:57:03 2015
- .
-drwx------ 8 ikim025csmajs    4096 Mon Feb 23 10:05:27 2015
- .
--rw------- 1 ikim025csmajs     240 Sun Feb 22 23:28:05 2015
- .
--rw------- 1 ikim025csmajs     553 Mon Feb 23 09:50:00 2015
- .
-drwx------ 2 ikim025csmajs    4096 Mon Mar  9 13:25:45 2015
- .
-drwx------ 2 ikim025csmajs    4096 Mon Mar  9 13:25:10 2015
- .
-drwx------ 2 ikim025csmajs    4096 Mon Mar  9 13:25:53 2015
- .
--rw------- 1 ikim025csmajs   18017 Wed Feb 18 14:49:13 2015
- .
-~/cs100/rshell
-ikim025@hammer $ bin/;s[K[Kls -a
-./	../	.git/	Makefile	README.md	test/	src/	bin/	LICENSE	
+./bin:
+[32mls[0m      [32mrshell[0m  
 
-~/cs100/rshell
-ikim025@hammer $ bin/;s[K[Kls -a -l
-drwx------ 6 ikim025csmajs    4096 Mon Mar  9 13:25:51 2015
- .
-drwx------ 3 ikim025csmajs    4096 Fri Jan 23 22:57:03 2015
- .
-drwx------ 8 ikim025csmajs    4096 Mon Feb 23 10:05:27 2015
- .
--rw------- 1 ikim025csmajs     240 Sun Feb 22 23:28:05 2015
- .
--rw------- 1 ikim025csmajs     553 Mon Feb 23 09:50:00 2015
- .
-drwx------ 2 ikim025csmajs    4096 Mon Mar  9 13:25:45 2015
- .
-drwx------ 2 ikim025csmajs    4096 Mon Mar  9 13:25:10 2015
- .
-drwx------ 2 ikim025csmajs    4096 Mon Mar  9 13:25:53 2015
- .
--rw------- 1 ikim025csmajs   18017 Wed Feb 18 14:49:13 2015
- .
-~/cs100/rshell
-ikim025@hammer $ bin/ls ls [K[K[K-l -l
-drwx------ 6 ikim025csmajs    4096 Mon Mar  9 13:25:51 2015
- .
-drwx------ 3 ikim025csmajs    4096 Fri Jan 23 22:57:03 2015
- .
-drwx------ 8 ikim025csmajs    4096 Mon Feb 23 10:05:27 2015
- .
--rw------- 1 ikim025csmajs     240 Sun Feb 22 23:28:05 2015
- .
--rw------- 1 ikim025csmajs     553 Mon Feb 23 09:50:00 2015
- .
-drwx------ 2 ikim025csmajs    4096 Mon Mar  9 13:25:45 2015
- .
-drwx------ 2 ikim025csmajs    4096 Mon Mar  9 13:25:10 2015
- .
-drwx------ 2 ikim025csmajs    4096 Mon Mar  9 13:25:53 2015
- .
--rw------- 1 ikim025csmajs   18017 Wed Feb 18 14:49:13 2015
- .
-~/cs100/rshell
-ikim025@hammer $ bin /[K[K/ls 0[K-R
-Makefile	README.md	test/	src/	bin/	LICENSE	
+./src:
+[32ma.out[0m       ls.cpp[0m      rshell.cpp[0m  
 
-~/cs100/rshell
-ikim025@hammer $ bin/ls -L[Kl -R
-drwx------ 6 ikim025csmajs    4096 Mon Mar  9 13:25:51 2015
- .
-drwx------ 3 ikim025csmajs    4096 Fri Jan 23 22:57:03 2015
- .
-drwx------ 8 ikim025csmajs    4096 Mon Feb 23 10:05:27 2015
- .
--rw------- 1 ikim025csmajs     240 Sun Feb 22 23:28:05 2015
- .
--rw------- 1 ikim025csmajs     553 Mon Feb 23 09:50:00 2015
- .
-drwx------ 2 ikim025csmajs    4096 Mon Mar  9 13:25:45 2015
- .
-drwx------ 2 ikim025csmajs    4096 Mon Mar  9 13:25:10 2015
- .
-drwx------ 2 ikim025csmajs    4096 Mon Mar  9 13:25:53 2015
- .
--rw------- 1 ikim025csmajs   18017 Wed Feb 18 14:49:13 2015
- .
-~/cs100/rshell
-ikim025@hammer $ bin/ls -a -l
-drwx------ 6 ikim025csmajs    4096 Mon Mar  9 13:25:51 2015
- .
-drwx------ 3 ikim025csmajs    4096 Fri Jan 23 22:57:03 2015
- .
-drwx------ 8 ikim025csmajs    4096 Mon Feb 23 10:05:27 2015
- .
--rw------- 1 ikim025csmajs     240 Sun Feb 22 23:28:05 2015
- .
--rw------- 1 ikim025csmajs     553 Mon Feb 23 09:50:00 2015
- .
-drwx------ 2 ikim025csmajs    4096 Mon Mar  9 13:25:45 2015
- .
-drwx------ 2 ikim025csmajs    4096 Mon Mar  9 13:25:10 2015
- .
-drwx------ 2 ikim025csmajs    4096 Mon Mar  9 13:25:53 2015
- .
--rw------- 1 ikim025csmajs   18017 Wed Feb 18 14:49:13 2015
- .
-~/cs100/rshell
-ikim025@hammer $ bin/ls a[K-a -a -a -l 
-drwx------ 6 ikim025csmajs    4096 Mon Mar  9 13:25:51 2015
- .
-drwx------ 3 ikim025csmajs    4096 Fri Jan 23 22:57:03 2015
- .
-drwx------ 8 ikim025csmajs    4096 Mon Feb 23 10:05:27 2015
- .
--rw------- 1 ikim025csmajs     240 Sun Feb 22 23:28:05 2015
- .
--rw------- 1 ikim025csmajs     553 Mon Feb 23 09:50:00 2015
- .
-drwx------ 2 ikim025csmajs    4096 Mon Mar  9 13:25:45 2015
- .
-drwx------ 2 ikim025csmajs    4096 Mon Mar  9 13:25:10 2015
- .
-drwx------ 2 ikim025csmajs    4096 Mon Mar  9 13:25:53 2015
- .
--rw------- 1 ikim025csmajs   18017 Wed Feb 18 14:49:13 2015
- .
-~/cs100/rshell
-ikim025@hammer $ /b[K[Kbin/ls -l -a -a -a
-drwx------ 6 ikim025csmajs    4096 Mon Mar  9 13:25:51 2015
- .
-drwx------ 3 ikim025csmajs    4096 Fri Jan 23 22:57:03 2015
- .
-drwx------ 8 ikim025csmajs    4096 Mon Feb 23 10:05:27 2015
- .
--rw------- 1 ikim025csmajs     240 Sun Feb 22 23:28:05 2015
- .
--rw------- 1 ikim025csmajs     553 Mon Feb 23 09:50:00 2015
- .
-drwx------ 2 ikim025csmajs    4096 Mon Mar  9 13:25:45 2015
- .
-drwx------ 2 ikim025csmajs    4096 Mon Mar  9 13:25:10 2015
- .
-drwx------ 2 ikim025csmajs    4096 Mon Mar  9 13:25:53 2015
- .
--rw------- 1 ikim025csmajs   18017 Wed Feb 18 14:49:13 2015
- .
-~/cs100/rshell
-ikim025@hammer $ bin/ls -l[Ka -R
-./	../	.git/	Makefile	README.md	test/	src/	bin/	LICENSE	
+./test:
+hw0[0m       hw1[0m       hw3[0m       test.txt[0m  
+bash-3.2$ bin/ls a[K-al
+total 72
+drwxr-xr-x  10 iankimm  staff         340 Mar 23 07:59 [32m[34m.[0m
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:01 [32m[34m..[0m
+-rw-r--r--   1 iankimm  staff        6148 Mar 23 07:08 .DS_Store[0m
+drwxr-xr-x  13 iankimm  staff         442 Mar 23 07:59 [32m[34m.git[0m
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 07:59 [32m[34mbin[0m
+-rw-r--r--   1 iankimm  staff         331 Mar 23 01:04 Makefile[0m
+-rw-r--r--   1 iankimm  staff       18017 Mar 23 01:01 LICENSE[0m
+-rw-r--r--   1 iankimm  staff         699 Mar 23 01:01 README.md[0m
+drwxr-xr-x   6 iankimm  staff         204 Mar 23 07:57 [32m[34msrc[0m
+drwxr-xr-x   6 iankimm  staff         204 Mar 23 07:58 [32m[34mtest[0m
+bash-3.2$ bin/ls -lR
+total 56
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 07:59 [32m[34mbin[0m
+-rw-r--r--   1 iankimm  staff       18017 Mar 23 01:01 LICENSE[0m
+-rw-r--r--   1 iankimm  staff         331 Mar 23 01:04 Makefile[0m
+-rw-r--r--   1 iankimm  staff         699 Mar 23 01:01 README.md[0m
+drwxr-xr-x   6 iankimm  staff         204 Mar 23 07:57 [32m[34msrc[0m
+drwxr-xr-x   6 iankimm  staff         204 Mar 23 07:58 [32m[34mtest[0m
 
-~/cs100/rshell
-ikim025@hammer $ exit
+./bin:
+total 192
+-rwxr-xr-x   1 iankimm  staff       86760 Mar 23 07:59 [32mls[0m
+-rwxr-xr-x   1 iankimm  staff        4280 Mar 23 07:59 [32mrshell[0m
+
+./src:
+total 168
+-rwxr-xr-x   1 iankimm  staff       67376 Mar 23 01:04 [32ma.out[0m
+-rw-r--r--   1 iankimm  staff        8635 Mar 23 07:57 ls.cpp[0m
+-rw-r--r--   1 iankimm  staff          70 Mar 23 01:09 rshell.cpp[0m
+
+./test:
+total 48
+-rw-r--r--   1 iankimm  staff        4444 Mar 23 01:01 hw0[0m
+-rw-r--r--   1 iankimm  staff        1231 Mar 23 07:59 hw1[0m
+-rw-r--r--   1 iankimm  staff        6677 Mar 23 01:01 hw3[0m
+-rw-r--r--   1 iankimm  staff        2555 Mar 23 01:01 test.txt[0m
+bash-3.2$ bin/ls -aR
+[32m[34m.[0m          .DS_Store[0m  [32m[34mbin[0m        LICENSE[0m    [32m[34msrc[0m        
+[32m[34m..[0m         [32m[34m.git[0m       Makefile[0m   README.md[0m  [32m[34mtest[0m       
+
+./.git:
+[32m[34m.[0m            description[0m  index[0m        [32m[34mlogs[0m         [32m[34mrefs[0m         
+[32m[34m..[0m           config[0m       [32m[34mhooks[0m        [32m[34mobjects[0m      
+[32m[34mbranches[0m     HEAD[0m         [32m[34minfo[0m         packed-refs[0m  
+
+./bin:
+[32m[34m.[0m       [32m[34m..[0m      [32mls[0m      [32mrshell[0m  
+
+./src:
+[32m[34m.[0m           [32m[34m..[0m          .DS_Store[0m   [32ma.out[0m       ls.cpp[0m      rshell.cpp[0m  
+
+./test:
+[32m[34m.[0m         [32m[34m..[0m        hw0[0m       hw1[0m       hw3[0m       test.txt[0m  
+
+./.git/branches:
+[32m[34m.[0m   [32m[34m..[0m  
+
+./.git/hooks:
+[32m[34m.[0m                          [32mpre-applypatch.sample[0m      
+[32m[34m..[0m                         [32mpre-push.sample[0m            
+[32mapplypatch-msg.sample[0m      [32mpre-rebase.sample[0m          
+[32mcommit-msg.sample[0m          [32mprepare-commit-msg.sample[0m  
+[32mpost-update.sample[0m         [32mupdate.sample[0m              
+[32mpre-commit.sample[0m          
+
+./.git/info:
+[32m[34m.[0m        [32m[34m..[0m       exclude[0m  
+
+./.git/logs:
+[32m[34m.[0m     [32m[34m..[0m    HEAD[0m  [32m[34mrefs[0m  
+
+./.git/objects:
+[32m[34m.[0m     [32m[34m..[0m    [32m[34minfo[0m  [32m[34mpack[0m  
+
+./.git/refs:
+[32m[34m.[0m        [32m[34m..[0m       [32m[34mheads[0m    [32m[34mremotes[0m  [32m[34mtags[0m     
+
+./.git/logs/refs:
+[32m[34m.[0m        [32m[34m..[0m       [32m[34mheads[0m    [32m[34mremotes[0m  
+
+./.git/objects/info:
+[32m[34m.[0m   [32m[34m..[0m  
+
+./.git/objects/pack:
+[32m[34m.[0m                                                   
+[32m[34m..[0m                                                  
+pack-bdf8f6d0e94ee18b419ef01958f6ff8191c42fac.idx[0m   
+pack-bdf8f6d0e94ee18b419ef01958f6ff8191c42fac.pack[0m  
+
+./.git/refs/heads:
+[32m[34m.[0m       [32m[34m..[0m      hw3[0m     master[0m  
+
+./.git/refs/remotes:
+[32m[34m.[0m       [32m[34m..[0m      [32m[34morigin[0m  
+
+./.git/refs/tags:
+[32m[34m.[0m   [32m[34m..[0m  
+
+./.git/logs/refs/heads:
+[32m[34m.[0m       [32m[34m..[0m      hw3[0m     master[0m  
+
+./.git/logs/refs/remotes:
+[32m[34m.[0m       [32m[34m..[0m      [32m[34morigin[0m  
+
+./.git/refs/remotes/origin:
+[32m[34m.[0m     [32m[34m..[0m    HEAD[0m  
+
+./.git/logs/refs/remotes/origin:
+[32m[34m.[0m     [32m[34m..[0m    HEAD[0m  
+bash-3.2$ bin/ls -alr[KR
+total 72
+drwxr-xr-x  10 iankimm  staff         340 Mar 23 07:59 [32m[34m.[0m
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:01 [32m[34m..[0m
+-rw-r--r--   1 iankimm  staff        6148 Mar 23 07:08 .DS_Store[0m
+drwxr-xr-x  13 iankimm  staff         442 Mar 23 07:59 [32m[34m.git[0m
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 07:59 [32m[34mbin[0m
+-rw-r--r--   1 iankimm  staff         331 Mar 23 01:04 Makefile[0m
+-rw-r--r--   1 iankimm  staff       18017 Mar 23 01:01 LICENSE[0m
+-rw-r--r--   1 iankimm  staff         699 Mar 23 01:01 README.md[0m
+drwxr-xr-x   6 iankimm  staff         204 Mar 23 07:57 [32m[34msrc[0m
+drwxr-xr-x   6 iankimm  staff         204 Mar 23 07:58 [32m[34mtest[0m
+
+./.git:
+total 40
+drwxr-xr-x  13 iankimm  staff         442 Mar 23 07:59 [32m[34m.[0m
+drwxr-xr-x  10 iankimm  staff         340 Mar 23 07:59 [32m[34m..[0m
+drwxr-xr-x   2 iankimm  staff          68 Mar 23 01:00 [32m[34mbranches[0m
+-rw-r--r--   1 iankimm  staff          73 Mar 23 01:00 description[0m
+-rw-r--r--   1 iankimm  staff         363 Mar 23 01:01 config[0m
+-rw-r--r--   1 iankimm  staff          20 Mar 23 01:01 HEAD[0m
+-rw-r--r--   1 iankimm  staff         704 Mar 23 01:05 index[0m
+drwxr-xr-x  11 iankimm  staff         374 Mar 23 01:00 [32m[34mhooks[0m
+drwxr-xr-x   3 iankimm  staff         102 Mar 23 01:00 [32m[34minfo[0m
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:00 [32m[34mlogs[0m
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:00 [32m[34mobjects[0m
+-rw-r--r--   1 iankimm  staff         367 Mar 23 01:00 packed-refs[0m
+drwxr-xr-x   5 iankimm  staff         170 Mar 23 01:00 [32m[34mrefs[0m
+
+./bin:
+total 192
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 07:59 [32m[34m.[0m
+drwxr-xr-x  10 iankimm  staff         340 Mar 23 07:59 [32m[34m..[0m
+-rwxr-xr-x   1 iankimm  staff       86760 Mar 23 07:59 [32mls[0m
+-rwxr-xr-x   1 iankimm  staff        4280 Mar 23 07:59 [32mrshell[0m
+
+./src:
+total 184
+drwxr-xr-x   6 iankimm  staff         204 Mar 23 07:57 [32m[34m.[0m
+drwxr-xr-x  10 iankimm  staff         340 Mar 23 07:59 [32m[34m..[0m
+-rw-r--r--   1 iankimm  staff        6148 Mar 23 01:12 .DS_Store[0m
+-rwxr-xr-x   1 iankimm  staff       67376 Mar 23 01:04 [32ma.out[0m
+-rw-r--r--   1 iankimm  staff        8635 Mar 23 07:57 ls.cpp[0m
+-rw-r--r--   1 iankimm  staff          70 Mar 23 01:09 rshell.cpp[0m
+
+./test:
+total 56
+drwxr-xr-x   6 iankimm  staff         204 Mar 23 07:58 [32m[34m.[0m
+drwxr-xr-x  10 iankimm  staff         340 Mar 23 07:59 [32m[34m..[0m
+-rw-r--r--   1 iankimm  staff        4444 Mar 23 01:01 hw0[0m
+-rw-r--r--   1 iankimm  staff        5327 Mar 23 08:00 hw1[0m
+-rw-r--r--   1 iankimm  staff        6677 Mar 23 01:01 hw3[0m
+-rw-r--r--   1 iankimm  staff        2555 Mar 23 01:01 test.txt[0m
+
+./.git/branches:
+total 0
+drwxr-xr-x   2 iankimm  staff          68 Mar 23 01:00 [32m[34m.[0m
+drwxr-xr-x  13 iankimm  staff         442 Mar 23 07:59 [32m[34m..[0m
+
+./.git/hooks:
+total 80
+drwxr-xr-x  11 iankimm  staff         374 Mar 23 01:00 [32m[34m.[0m
+drwxr-xr-x  13 iankimm  staff         442 Mar 23 07:59 [32m[34m..[0m
+-rwxr-xr-x   1 iankimm  staff         452 Mar 23 01:00 [32mapplypatch-msg.sample[0m
+-rwxr-xr-x   1 iankimm  staff         896 Mar 23 01:00 [32mcommit-msg.sample[0m
+-rwxr-xr-x   1 iankimm  staff         189 Mar 23 01:00 [32mpost-update.sample[0m
+-rwxr-xr-x   1 iankimm  staff        1642 Mar 23 01:00 [32mpre-commit.sample[0m
+-rwxr-xr-x   1 iankimm  staff         398 Mar 23 01:00 [32mpre-applypatch.sample[0m
+-rwxr-xr-x   1 iankimm  staff        1352 Mar 23 01:00 [32mpre-push.sample[0m
+-rwxr-xr-x   1 iankimm  staff        4951 Mar 23 01:00 [32mpre-rebase.sample[0m
+-rwxr-xr-x   1 iankimm  staff        1239 Mar 23 01:00 [32mprepare-commit-msg.sample[0m
+-rwxr-xr-x   1 iankimm  staff        3611 Mar 23 01:00 [32mupdate.sample[0m
+
+./.git/info:
+total 8
+drwxr-xr-x   3 iankimm  staff         102 Mar 23 01:00 [32m[34m.[0m
+drwxr-xr-x  13 iankimm  staff         442 Mar 23 07:59 [32m[34m..[0m
+-rw-r--r--   1 iankimm  staff         240 Mar 23 01:00 exclude[0m
+
+./.git/logs:
+total 8
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:00 [32m[34m.[0m
+drwxr-xr-x  13 iankimm  staff         442 Mar 23 07:59 [32m[34m..[0m
+-rw-r--r--   1 iankimm  staff         366 Mar 23 01:01 HEAD[0m
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:00 [32m[34mrefs[0m
+
+./.git/objects:
+total 0
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:00 [32m[34m.[0m
+drwxr-xr-x  13 iankimm  staff         442 Mar 23 07:59 [32m[34m..[0m
+drwxr-xr-x   2 iankimm  staff          68 Mar 23 01:00 [32m[34minfo[0m
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:00 [32m[34mpack[0m
+
+./.git/refs:
+total 0
+drwxr-xr-x   5 iankimm  staff         170 Mar 23 01:00 [32m[34m.[0m
+drwxr-xr-x  13 iankimm  staff         442 Mar 23 07:59 [32m[34m..[0m
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:01 [32m[34mheads[0m
+drwxr-xr-x   3 iankimm  staff         102 Mar 23 01:00 [32m[34mremotes[0m
+drwxr-xr-x   2 iankimm  staff          68 Mar 23 01:00 [32m[34mtags[0m
+
+./.git/logs/refs:
+total 0
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:00 [32m[34m.[0m
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:00 [32m[34m..[0m
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:01 [32m[34mheads[0m
+drwxr-xr-x   3 iankimm  staff         102 Mar 23 01:00 [32m[34mremotes[0m
+
+./.git/objects/info:
+total 0
+drwxr-xr-x   2 iankimm  staff          68 Mar 23 01:00 [32m[34m.[0m
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:00 [32m[34m..[0m
+
+./.git/objects/pack:
+total 3016
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:00 [32m[34m.[0m
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:00 [32m[34m..[0m
+-r--r--r--   1 iankimm  staff        9556 Mar 23 01:00 pack-bdf8f6d0e94ee18b419ef01958f6ff8191c42fac.idx[0m
+-r--r--r--   1 iankimm  staff     1530220 Mar 23 01:00 pack-bdf8f6d0e94ee18b419ef01958f6ff8191c42fac.pack[0m
+
+./.git/refs/heads:
+total 16
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:01 [32m[34m.[0m
+drwxr-xr-x   5 iankimm  staff         170 Mar 23 01:00 [32m[34m..[0m
+-rw-r--r--   1 iankimm  staff          41 Mar 23 01:01 hw3[0m
+-rw-r--r--   1 iankimm  staff          41 Mar 23 01:00 master[0m
+
+./.git/refs/remotes:
+total 0
+drwxr-xr-x   3 iankimm  staff         102 Mar 23 01:00 [32m[34m.[0m
+drwxr-xr-x   5 iankimm  staff         170 Mar 23 01:00 [32m[34m..[0m
+drwxr-xr-x   3 iankimm  staff         102 Mar 23 01:00 [32m[34morigin[0m
+
+./.git/refs/tags:
+total 0
+drwxr-xr-x   2 iankimm  staff          68 Mar 23 01:00 [32m[34m.[0m
+drwxr-xr-x   5 iankimm  staff         170 Mar 23 01:00 [32m[34m..[0m
+
+./.git/logs/refs/heads:
+total 16
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:01 [32m[34m.[0m
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:00 [32m[34m..[0m
+-rw-r--r--   1 iankimm  staff         185 Mar 23 01:01 hw3[0m
+-rw-r--r--   1 iankimm  staff         190 Mar 23 01:00 master[0m
+
+./.git/logs/refs/remotes:
+total 0
+drwxr-xr-x   3 iankimm  staff         102 Mar 23 01:00 [32m[34m.[0m
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:00 [32m[34m..[0m
+drwxr-xr-x   3 iankimm  staff         102 Mar 23 01:00 [32m[34morigin[0m
+
+./.git/refs/remotes/origin:
+total 8
+drwxr-xr-x   3 iankimm  staff         102 Mar 23 01:00 [32m[34m.[0m
+drwxr-xr-x   3 iankimm  staff         102 Mar 23 01:00 [32m[34m..[0m
+-rw-r--r--   1 iankimm  staff          32 Mar 23 01:00 HEAD[0m
+
+./.git/logs/refs/remotes/origin:
+total 8
+drwxr-xr-x   3 iankimm  staff         102 Mar 23 01:00 [32m[34m.[0m
+drwxr-xr-x   3 iankimm  staff         102 Mar 23 01:00 [32m[34m..[0m
+-rw-r--r--   1 iankimm  staff         190 Mar 23 01:00 HEAD[0m
+bash-3.2$ bin [K/ls -la
+total 72
+drwxr-xr-x  10 iankimm  staff         340 Mar 23 07:59 [32m[34m.[0m
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:01 [32m[34m..[0m
+-rw-r--r--   1 iankimm  staff        6148 Mar 23 07:08 .DS_Store[0m
+drwxr-xr-x  13 iankimm  staff         442 Mar 23 07:59 [32m[34m.git[0m
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 07:59 [32m[34mbin[0m
+-rw-r--r--   1 iankimm  staff         331 Mar 23 01:04 Makefile[0m
+-rw-r--r--   1 iankimm  staff       18017 Mar 23 01:01 LICENSE[0m
+-rw-r--r--   1 iankimm  staff         699 Mar 23 01:01 README.md[0m
+drwxr-xr-x   6 iankimm  staff         204 Mar 23 07:57 [32m[34msrc[0m
+drwxr-xr-x   6 iankimm  staff         204 Mar 23 07:58 [32m[34mtest[0m
+bash-3.2$ bin/ls -l[KRa
+[32m[34m.[0m          .DS_Store[0m  [32m[34mbin[0m        LICENSE[0m    [32m[34msrc[0m        
+[32m[34m..[0m         [32m[34m.git[0m       Makefile[0m   README.md[0m  [32m[34mtest[0m       
+
+./.git:
+[32m[34m.[0m            description[0m  index[0m        [32m[34mlogs[0m         [32m[34mrefs[0m         
+[32m[34m..[0m           config[0m       [32m[34mhooks[0m        [32m[34mobjects[0m      
+[32m[34mbranches[0m     HEAD[0m         [32m[34minfo[0m         packed-refs[0m  
+
+./bin:
+[32m[34m.[0m       [32m[34m..[0m      [32mls[0m      [32mrshell[0m  
+
+./src:
+[32m[34m.[0m           [32m[34m..[0m          .DS_Store[0m   [32ma.out[0m       ls.cpp[0m      rshell.cpp[0m  
+
+./test:
+[32m[34m.[0m         [32m[34m..[0m        hw0[0m       hw1[0m       hw3[0m       test.txt[0m  
+
+./.git/branches:
+[32m[34m.[0m   [32m[34m..[0m  
+
+./.git/hooks:
+[32m[34m.[0m                          [32mpre-applypatch.sample[0m      
+[32m[34m..[0m                         [32mpre-push.sample[0m            
+[32mapplypatch-msg.sample[0m      [32mpre-rebase.sample[0m          
+[32mcommit-msg.sample[0m          [32mprepare-commit-msg.sample[0m  
+[32mpost-update.sample[0m         [32mupdate.sample[0m              
+[32mpre-commit.sample[0m          
+
+./.git/info:
+[32m[34m.[0m        [32m[34m..[0m       exclude[0m  
+
+./.git/logs:
+[32m[34m.[0m     [32m[34m..[0m    HEAD[0m  [32m[34mrefs[0m  
+
+./.git/objects:
+[32m[34m.[0m     [32m[34m..[0m    [32m[34minfo[0m  [32m[34mpack[0m  
+
+./.git/refs:
+[32m[34m.[0m        [32m[34m..[0m       [32m[34mheads[0m    [32m[34mremotes[0m  [32m[34mtags[0m     
+
+./.git/logs/refs:
+[32m[34m.[0m        [32m[34m..[0m       [32m[34mheads[0m    [32m[34mremotes[0m  
+
+./.git/objects/info:
+[32m[34m.[0m   [32m[34m..[0m  
+
+./.git/objects/pack:
+[32m[34m.[0m                                                   
+[32m[34m..[0m                                                  
+pack-bdf8f6d0e94ee18b419ef01958f6ff8191c42fac.idx[0m   
+pack-bdf8f6d0e94ee18b419ef01958f6ff8191c42fac.pack[0m  
+
+./.git/refs/heads:
+[32m[34m.[0m       [32m[34m..[0m      hw3[0m     master[0m  
+
+./.git/refs/remotes:
+[32m[34m.[0m       [32m[34m..[0m      [32m[34morigin[0m  
+
+./.git/refs/tags:
+[32m[34m.[0m   [32m[34m..[0m  
+
+./.git/logs/refs/heads:
+[32m[34m.[0m       [32m[34m..[0m      hw3[0m     master[0m  
+
+./.git/logs/refs/remotes:
+[32m[34m.[0m       [32m[34m..[0m      [32m[34morigin[0m  
+
+./.git/refs/remotes/origin:
+[32m[34m.[0m     [32m[34m..[0m    HEAD[0m  
+
+./.git/logs/refs/remotes/origin:
+[32m[34m.[0m     [32m[34m..[0m    HEAD[0m  
+bash-3.2$ bin/ls -la
+total 72
+drwxr-xr-x  10 iankimm  staff         340 Mar 23 07:59 [32m[34m.[0m
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:01 [32m[34m..[0m
+-rw-r--r--   1 iankimm  staff        6148 Mar 23 07:08 .DS_Store[0m
+drwxr-xr-x  13 iankimm  staff         442 Mar 23 07:59 [32m[34m.git[0m
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 07:59 [32m[34mbin[0m
+-rw-r--r--   1 iankimm  staff         331 Mar 23 01:04 Makefile[0m
+-rw-r--r--   1 iankimm  staff       18017 Mar 23 01:01 LICENSE[0m
+-rw-r--r--   1 iankimm  staff         699 Mar 23 01:01 README.md[0m
+drwxr-xr-x   6 iankimm  staff         204 Mar 23 07:57 [32m[34msrc[0m
+drwxr-xr-x   6 iankimm  staff         204 Mar 23 07:58 [32m[34mtest[0m
+bash-3.2$ bin/ls -laR
+total 72
+drwxr-xr-x  10 iankimm  staff         340 Mar 23 07:59 [32m[34m.[0m
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:01 [32m[34m..[0m
+-rw-r--r--   1 iankimm  staff        6148 Mar 23 07:08 .DS_Store[0m
+drwxr-xr-x  13 iankimm  staff         442 Mar 23 07:59 [32m[34m.git[0m
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 07:59 [32m[34mbin[0m
+-rw-r--r--   1 iankimm  staff         331 Mar 23 01:04 Makefile[0m
+-rw-r--r--   1 iankimm  staff       18017 Mar 23 01:01 LICENSE[0m
+-rw-r--r--   1 iankimm  staff         699 Mar 23 01:01 README.md[0m
+drwxr-xr-x   6 iankimm  staff         204 Mar 23 07:57 [32m[34msrc[0m
+drwxr-xr-x   6 iankimm  staff         204 Mar 23 07:58 [32m[34mtest[0m
+
+./.git:
+total 40
+drwxr-xr-x  13 iankimm  staff         442 Mar 23 07:59 [32m[34m.[0m
+drwxr-xr-x  10 iankimm  staff         340 Mar 23 07:59 [32m[34m..[0m
+drwxr-xr-x   2 iankimm  staff          68 Mar 23 01:00 [32m[34mbranches[0m
+-rw-r--r--   1 iankimm  staff          73 Mar 23 01:00 description[0m
+-rw-r--r--   1 iankimm  staff         363 Mar 23 01:01 config[0m
+-rw-r--r--   1 iankimm  staff          20 Mar 23 01:01 HEAD[0m
+-rw-r--r--   1 iankimm  staff         704 Mar 23 01:05 index[0m
+drwxr-xr-x  11 iankimm  staff         374 Mar 23 01:00 [32m[34mhooks[0m
+drwxr-xr-x   3 iankimm  staff         102 Mar 23 01:00 [32m[34minfo[0m
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:00 [32m[34mlogs[0m
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:00 [32m[34mobjects[0m
+-rw-r--r--   1 iankimm  staff         367 Mar 23 01:00 packed-refs[0m
+drwxr-xr-x   5 iankimm  staff         170 Mar 23 01:00 [32m[34mrefs[0m
+
+./bin:
+total 192
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 07:59 [32m[34m.[0m
+drwxr-xr-x  10 iankimm  staff         340 Mar 23 07:59 [32m[34m..[0m
+-rwxr-xr-x   1 iankimm  staff       86760 Mar 23 07:59 [32mls[0m
+-rwxr-xr-x   1 iankimm  staff        4280 Mar 23 07:59 [32mrshell[0m
+
+./src:
+total 184
+drwxr-xr-x   6 iankimm  staff         204 Mar 23 07:57 [32m[34m.[0m
+drwxr-xr-x  10 iankimm  staff         340 Mar 23 07:59 [32m[34m..[0m
+-rw-r--r--   1 iankimm  staff        6148 Mar 23 01:12 .DS_Store[0m
+-rwxr-xr-x   1 iankimm  staff       67376 Mar 23 01:04 [32ma.out[0m
+-rw-r--r--   1 iankimm  staff        8635 Mar 23 07:57 ls.cpp[0m
+-rw-r--r--   1 iankimm  staff          70 Mar 23 01:09 rshell.cpp[0m
+
+./test:
+total 80
+drwxr-xr-x   6 iankimm  staff         204 Mar 23 07:58 [32m[34m.[0m
+drwxr-xr-x  10 iankimm  staff         340 Mar 23 07:59 [32m[34m..[0m
+-rw-r--r--   1 iankimm  staff        4444 Mar 23 01:01 hw0[0m
+-rw-r--r--   1 iankimm  staff       18388 Mar 23 08:00 hw1[0m
+-rw-r--r--   1 iankimm  staff        6677 Mar 23 01:01 hw3[0m
+-rw-r--r--   1 iankimm  staff        2555 Mar 23 01:01 test.txt[0m
+
+./.git/branches:
+total 0
+drwxr-xr-x   2 iankimm  staff          68 Mar 23 01:00 [32m[34m.[0m
+drwxr-xr-x  13 iankimm  staff         442 Mar 23 07:59 [32m[34m..[0m
+
+./.git/hooks:
+total 80
+drwxr-xr-x  11 iankimm  staff         374 Mar 23 01:00 [32m[34m.[0m
+drwxr-xr-x  13 iankimm  staff         442 Mar 23 07:59 [32m[34m..[0m
+-rwxr-xr-x   1 iankimm  staff         452 Mar 23 01:00 [32mapplypatch-msg.sample[0m
+-rwxr-xr-x   1 iankimm  staff         896 Mar 23 01:00 [32mcommit-msg.sample[0m
+-rwxr-xr-x   1 iankimm  staff         189 Mar 23 01:00 [32mpost-update.sample[0m
+-rwxr-xr-x   1 iankimm  staff        1642 Mar 23 01:00 [32mpre-commit.sample[0m
+-rwxr-xr-x   1 iankimm  staff         398 Mar 23 01:00 [32mpre-applypatch.sample[0m
+-rwxr-xr-x   1 iankimm  staff        1352 Mar 23 01:00 [32mpre-push.sample[0m
+-rwxr-xr-x   1 iankimm  staff        4951 Mar 23 01:00 [32mpre-rebase.sample[0m
+-rwxr-xr-x   1 iankimm  staff        1239 Mar 23 01:00 [32mprepare-commit-msg.sample[0m
+-rwxr-xr-x   1 iankimm  staff        3611 Mar 23 01:00 [32mupdate.sample[0m
+
+./.git/info:
+total 8
+drwxr-xr-x   3 iankimm  staff         102 Mar 23 01:00 [32m[34m.[0m
+drwxr-xr-x  13 iankimm  staff         442 Mar 23 07:59 [32m[34m..[0m
+-rw-r--r--   1 iankimm  staff         240 Mar 23 01:00 exclude[0m
+
+./.git/logs:
+total 8
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:00 [32m[34m.[0m
+drwxr-xr-x  13 iankimm  staff         442 Mar 23 07:59 [32m[34m..[0m
+-rw-r--r--   1 iankimm  staff         366 Mar 23 01:01 HEAD[0m
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:00 [32m[34mrefs[0m
+
+./.git/objects:
+total 0
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:00 [32m[34m.[0m
+drwxr-xr-x  13 iankimm  staff         442 Mar 23 07:59 [32m[34m..[0m
+drwxr-xr-x   2 iankimm  staff          68 Mar 23 01:00 [32m[34minfo[0m
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:00 [32m[34mpack[0m
+
+./.git/refs:
+total 0
+drwxr-xr-x   5 iankimm  staff         170 Mar 23 01:00 [32m[34m.[0m
+drwxr-xr-x  13 iankimm  staff         442 Mar 23 07:59 [32m[34m..[0m
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:01 [32m[34mheads[0m
+drwxr-xr-x   3 iankimm  staff         102 Mar 23 01:00 [32m[34mremotes[0m
+drwxr-xr-x   2 iankimm  staff          68 Mar 23 01:00 [32m[34mtags[0m
+
+./.git/logs/refs:
+total 0
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:00 [32m[34m.[0m
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:00 [32m[34m..[0m
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:01 [32m[34mheads[0m
+drwxr-xr-x   3 iankimm  staff         102 Mar 23 01:00 [32m[34mremotes[0m
+
+./.git/objects/info:
+total 0
+drwxr-xr-x   2 iankimm  staff          68 Mar 23 01:00 [32m[34m.[0m
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:00 [32m[34m..[0m
+
+./.git/objects/pack:
+total 3016
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:00 [32m[34m.[0m
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:00 [32m[34m..[0m
+-r--r--r--   1 iankimm  staff        9556 Mar 23 01:00 pack-bdf8f6d0e94ee18b419ef01958f6ff8191c42fac.idx[0m
+-r--r--r--   1 iankimm  staff     1530220 Mar 23 01:00 pack-bdf8f6d0e94ee18b419ef01958f6ff8191c42fac.pack[0m
+
+./.git/refs/heads:
+total 16
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:01 [32m[34m.[0m
+drwxr-xr-x   5 iankimm  staff         170 Mar 23 01:00 [32m[34m..[0m
+-rw-r--r--   1 iankimm  staff          41 Mar 23 01:01 hw3[0m
+-rw-r--r--   1 iankimm  staff          41 Mar 23 01:00 master[0m
+
+./.git/refs/remotes:
+total 0
+drwxr-xr-x   3 iankimm  staff         102 Mar 23 01:00 [32m[34m.[0m
+drwxr-xr-x   5 iankimm  staff         170 Mar 23 01:00 [32m[34m..[0m
+drwxr-xr-x   3 iankimm  staff         102 Mar 23 01:00 [32m[34morigin[0m
+
+./.git/refs/tags:
+total 0
+drwxr-xr-x   2 iankimm  staff          68 Mar 23 01:00 [32m[34m.[0m
+drwxr-xr-x   5 iankimm  staff         170 Mar 23 01:00 [32m[34m..[0m
+
+./.git/logs/refs/heads:
+total 16
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:01 [32m[34m.[0m
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:00 [32m[34m..[0m
+-rw-r--r--   1 iankimm  staff         185 Mar 23 01:01 hw3[0m
+-rw-r--r--   1 iankimm  staff         190 Mar 23 01:00 master[0m
+
+./.git/logs/refs/remotes:
+total 0
+drwxr-xr-x   3 iankimm  staff         102 Mar 23 01:00 [32m[34m.[0m
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:00 [32m[34m..[0m
+drwxr-xr-x   3 iankimm  staff         102 Mar 23 01:00 [32m[34morigin[0m
+
+./.git/refs/remotes/origin:
+total 8
+drwxr-xr-x   3 iankimm  staff         102 Mar 23 01:00 [32m[34m.[0m
+drwxr-xr-x   3 iankimm  staff         102 Mar 23 01:00 [32m[34m..[0m
+-rw-r--r--   1 iankimm  staff          32 Mar 23 01:00 HEAD[0m
+
+./.git/logs/refs/remotes/origin:
+total 8
+drwxr-xr-x   3 iankimm  staff         102 Mar 23 01:00 [32m[34m.[0m
+drwxr-xr-x   3 iankimm  staff         102 Mar 23 01:00 [32m[34m..[0m
+-rw-r--r--   1 iankimm  staff         190 Mar 23 01:00 HEAD[0m
+bash-3.2$ bin/ls -Ral
+total 72
+drwxr-xr-x  10 iankimm  staff         340 Mar 23 07:59 [32m[34m.[0m
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:01 [32m[34m..[0m
+-rw-r--r--   1 iankimm  staff        6148 Mar 23 07:08 .DS_Store[0m
+drwxr-xr-x  13 iankimm  staff         442 Mar 23 07:59 [32m[34m.git[0m
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 07:59 [32m[34mbin[0m
+-rw-r--r--   1 iankimm  staff         331 Mar 23 01:04 Makefile[0m
+-rw-r--r--   1 iankimm  staff       18017 Mar 23 01:01 LICENSE[0m
+-rw-r--r--   1 iankimm  staff         699 Mar 23 01:01 README.md[0m
+drwxr-xr-x   6 iankimm  staff         204 Mar 23 07:57 [32m[34msrc[0m
+drwxr-xr-x   6 iankimm  staff         204 Mar 23 07:58 [32m[34mtest[0m
+
+./.git:
+total 40
+drwxr-xr-x  13 iankimm  staff         442 Mar 23 07:59 [32m[34m.[0m
+drwxr-xr-x  10 iankimm  staff         340 Mar 23 07:59 [32m[34m..[0m
+drwxr-xr-x   2 iankimm  staff          68 Mar 23 01:00 [32m[34mbranches[0m
+-rw-r--r--   1 iankimm  staff          73 Mar 23 01:00 description[0m
+-rw-r--r--   1 iankimm  staff         363 Mar 23 01:01 config[0m
+-rw-r--r--   1 iankimm  staff          20 Mar 23 01:01 HEAD[0m
+-rw-r--r--   1 iankimm  staff         704 Mar 23 01:05 index[0m
+drwxr-xr-x  11 iankimm  staff         374 Mar 23 01:00 [32m[34mhooks[0m
+drwxr-xr-x   3 iankimm  staff         102 Mar 23 01:00 [32m[34minfo[0m
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:00 [32m[34mlogs[0m
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:00 [32m[34mobjects[0m
+-rw-r--r--   1 iankimm  staff         367 Mar 23 01:00 packed-refs[0m
+drwxr-xr-x   5 iankimm  staff         170 Mar 23 01:00 [32m[34mrefs[0m
+
+./bin:
+total 192
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 07:59 [32m[34m.[0m
+drwxr-xr-x  10 iankimm  staff         340 Mar 23 07:59 [32m[34m..[0m
+-rwxr-xr-x   1 iankimm  staff       86760 Mar 23 07:59 [32mls[0m
+-rwxr-xr-x   1 iankimm  staff        4280 Mar 23 07:59 [32mrshell[0m
+
+./src:
+total 184
+drwxr-xr-x   6 iankimm  staff         204 Mar 23 07:57 [32m[34m.[0m
+drwxr-xr-x  10 iankimm  staff         340 Mar 23 07:59 [32m[34m..[0m
+-rw-r--r--   1 iankimm  staff        6148 Mar 23 01:12 .DS_Store[0m
+-rwxr-xr-x   1 iankimm  staff       67376 Mar 23 01:04 [32ma.out[0m
+-rw-r--r--   1 iankimm  staff        8635 Mar 23 07:57 ls.cpp[0m
+-rw-r--r--   1 iankimm  staff          70 Mar 23 01:09 rshell.cpp[0m
+
+./test:
+total 96
+drwxr-xr-x   6 iankimm  staff         204 Mar 23 07:58 [32m[34m.[0m
+drwxr-xr-x  10 iankimm  staff         340 Mar 23 07:59 [32m[34m..[0m
+-rw-r--r--   1 iankimm  staff        4444 Mar 23 01:01 hw0[0m
+-rw-r--r--   1 iankimm  staff       26650 Mar 23 08:00 hw1[0m
+-rw-r--r--   1 iankimm  staff        6677 Mar 23 01:01 hw3[0m
+-rw-r--r--   1 iankimm  staff        2555 Mar 23 01:01 test.txt[0m
+
+./.git/branches:
+total 0
+drwxr-xr-x   2 iankimm  staff          68 Mar 23 01:00 [32m[34m.[0m
+drwxr-xr-x  13 iankimm  staff         442 Mar 23 07:59 [32m[34m..[0m
+
+./.git/hooks:
+total 80
+drwxr-xr-x  11 iankimm  staff         374 Mar 23 01:00 [32m[34m.[0m
+drwxr-xr-x  13 iankimm  staff         442 Mar 23 07:59 [32m[34m..[0m
+-rwxr-xr-x   1 iankimm  staff         452 Mar 23 01:00 [32mapplypatch-msg.sample[0m
+-rwxr-xr-x   1 iankimm  staff         896 Mar 23 01:00 [32mcommit-msg.sample[0m
+-rwxr-xr-x   1 iankimm  staff         189 Mar 23 01:00 [32mpost-update.sample[0m
+-rwxr-xr-x   1 iankimm  staff        1642 Mar 23 01:00 [32mpre-commit.sample[0m
+-rwxr-xr-x   1 iankimm  staff         398 Mar 23 01:00 [32mpre-applypatch.sample[0m
+-rwxr-xr-x   1 iankimm  staff        1352 Mar 23 01:00 [32mpre-push.sample[0m
+-rwxr-xr-x   1 iankimm  staff        4951 Mar 23 01:00 [32mpre-rebase.sample[0m
+-rwxr-xr-x   1 iankimm  staff        1239 Mar 23 01:00 [32mprepare-commit-msg.sample[0m
+-rwxr-xr-x   1 iankimm  staff        3611 Mar 23 01:00 [32mupdate.sample[0m
+
+./.git/info:
+total 8
+drwxr-xr-x   3 iankimm  staff         102 Mar 23 01:00 [32m[34m.[0m
+drwxr-xr-x  13 iankimm  staff         442 Mar 23 07:59 [32m[34m..[0m
+-rw-r--r--   1 iankimm  staff         240 Mar 23 01:00 exclude[0m
+
+./.git/logs:
+total 8
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:00 [32m[34m.[0m
+drwxr-xr-x  13 iankimm  staff         442 Mar 23 07:59 [32m[34m..[0m
+-rw-r--r--   1 iankimm  staff         366 Mar 23 01:01 HEAD[0m
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:00 [32m[34mrefs[0m
+
+./.git/objects:
+total 0
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:00 [32m[34m.[0m
+drwxr-xr-x  13 iankimm  staff         442 Mar 23 07:59 [32m[34m..[0m
+drwxr-xr-x   2 iankimm  staff          68 Mar 23 01:00 [32m[34minfo[0m
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:00 [32m[34mpack[0m
+
+./.git/refs:
+total 0
+drwxr-xr-x   5 iankimm  staff         170 Mar 23 01:00 [32m[34m.[0m
+drwxr-xr-x  13 iankimm  staff         442 Mar 23 07:59 [32m[34m..[0m
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:01 [32m[34mheads[0m
+drwxr-xr-x   3 iankimm  staff         102 Mar 23 01:00 [32m[34mremotes[0m
+drwxr-xr-x   2 iankimm  staff          68 Mar 23 01:00 [32m[34mtags[0m
+
+./.git/logs/refs:
+total 0
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:00 [32m[34m.[0m
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:00 [32m[34m..[0m
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:01 [32m[34mheads[0m
+drwxr-xr-x   3 iankimm  staff         102 Mar 23 01:00 [32m[34mremotes[0m
+
+./.git/objects/info:
+total 0
+drwxr-xr-x   2 iankimm  staff          68 Mar 23 01:00 [32m[34m.[0m
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:00 [32m[34m..[0m
+
+./.git/objects/pack:
+total 3016
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:00 [32m[34m.[0m
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:00 [32m[34m..[0m
+-r--r--r--   1 iankimm  staff        9556 Mar 23 01:00 pack-bdf8f6d0e94ee18b419ef01958f6ff8191c42fac.idx[0m
+-r--r--r--   1 iankimm  staff     1530220 Mar 23 01:00 pack-bdf8f6d0e94ee18b419ef01958f6ff8191c42fac.pack[0m
+
+./.git/refs/heads:
+total 16
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:01 [32m[34m.[0m
+drwxr-xr-x   5 iankimm  staff         170 Mar 23 01:00 [32m[34m..[0m
+-rw-r--r--   1 iankimm  staff          41 Mar 23 01:01 hw3[0m
+-rw-r--r--   1 iankimm  staff          41 Mar 23 01:00 master[0m
+
+./.git/refs/remotes:
+total 0
+drwxr-xr-x   3 iankimm  staff         102 Mar 23 01:00 [32m[34m.[0m
+drwxr-xr-x   5 iankimm  staff         170 Mar 23 01:00 [32m[34m..[0m
+drwxr-xr-x   3 iankimm  staff         102 Mar 23 01:00 [32m[34morigin[0m
+
+./.git/refs/tags:
+total 0
+drwxr-xr-x   2 iankimm  staff          68 Mar 23 01:00 [32m[34m.[0m
+drwxr-xr-x   5 iankimm  staff         170 Mar 23 01:00 [32m[34m..[0m
+
+./.git/logs/refs/heads:
+total 16
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:01 [32m[34m.[0m
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:00 [32m[34m..[0m
+-rw-r--r--   1 iankimm  staff         185 Mar 23 01:01 hw3[0m
+-rw-r--r--   1 iankimm  staff         190 Mar 23 01:00 master[0m
+
+./.git/logs/refs/remotes:
+total 0
+drwxr-xr-x   3 iankimm  staff         102 Mar 23 01:00 [32m[34m.[0m
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:00 [32m[34m..[0m
+drwxr-xr-x   3 iankimm  staff         102 Mar 23 01:00 [32m[34morigin[0m
+
+./.git/refs/remotes/origin:
+total 8
+drwxr-xr-x   3 iankimm  staff         102 Mar 23 01:00 [32m[34m.[0m
+drwxr-xr-x   3 iankimm  staff         102 Mar 23 01:00 [32m[34m..[0m
+-rw-r--r--   1 iankimm  staff          32 Mar 23 01:00 HEAD[0m
+
+./.git/logs/refs/remotes/origin:
+total 8
+drwxr-xr-x   3 iankimm  staff         102 Mar 23 01:00 [32m[34m.[0m
+drwxr-xr-x   3 iankimm  staff         102 Mar 23 01:00 [32m[34m..[0m
+-rw-r--r--   1 iankimm  staff         190 Mar 23 01:00 HEAD[0m
+bash-3.2$ bin/ls -arl[K[KRl
+total 72
+drwxr-xr-x  10 iankimm  staff         340 Mar 23 07:59 [32m[34m.[0m
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:01 [32m[34m..[0m
+-rw-r--r--   1 iankimm  staff        6148 Mar 23 07:08 .DS_Store[0m
+drwxr-xr-x  13 iankimm  staff         442 Mar 23 07:59 [32m[34m.git[0m
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 07:59 [32m[34mbin[0m
+-rw-r--r--   1 iankimm  staff         331 Mar 23 01:04 Makefile[0m
+-rw-r--r--   1 iankimm  staff       18017 Mar 23 01:01 LICENSE[0m
+-rw-r--r--   1 iankimm  staff         699 Mar 23 01:01 README.md[0m
+drwxr-xr-x   6 iankimm  staff         204 Mar 23 07:57 [32m[34msrc[0m
+drwxr-xr-x   6 iankimm  staff         204 Mar 23 07:58 [32m[34mtest[0m
+
+./.git:
+total 40
+drwxr-xr-x  13 iankimm  staff         442 Mar 23 07:59 [32m[34m.[0m
+drwxr-xr-x  10 iankimm  staff         340 Mar 23 07:59 [32m[34m..[0m
+drwxr-xr-x   2 iankimm  staff          68 Mar 23 01:00 [32m[34mbranches[0m
+-rw-r--r--   1 iankimm  staff          73 Mar 23 01:00 description[0m
+-rw-r--r--   1 iankimm  staff         363 Mar 23 01:01 config[0m
+-rw-r--r--   1 iankimm  staff          20 Mar 23 01:01 HEAD[0m
+-rw-r--r--   1 iankimm  staff         704 Mar 23 01:05 index[0m
+drwxr-xr-x  11 iankimm  staff         374 Mar 23 01:00 [32m[34mhooks[0m
+drwxr-xr-x   3 iankimm  staff         102 Mar 23 01:00 [32m[34minfo[0m
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:00 [32m[34mlogs[0m
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:00 [32m[34mobjects[0m
+-rw-r--r--   1 iankimm  staff         367 Mar 23 01:00 packed-refs[0m
+drwxr-xr-x   5 iankimm  staff         170 Mar 23 01:00 [32m[34mrefs[0m
+
+./bin:
+total 192
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 07:59 [32m[34m.[0m
+drwxr-xr-x  10 iankimm  staff         340 Mar 23 07:59 [32m[34m..[0m
+-rwxr-xr-x   1 iankimm  staff       86760 Mar 23 07:59 [32mls[0m
+-rwxr-xr-x   1 iankimm  staff        4280 Mar 23 07:59 [32mrshell[0m
+
+./src:
+total 184
+drwxr-xr-x   6 iankimm  staff         204 Mar 23 07:57 [32m[34m.[0m
+drwxr-xr-x  10 iankimm  staff         340 Mar 23 07:59 [32m[34m..[0m
+-rw-r--r--   1 iankimm  staff        6148 Mar 23 01:12 .DS_Store[0m
+-rwxr-xr-x   1 iankimm  staff       67376 Mar 23 01:04 [32ma.out[0m
+-rw-r--r--   1 iankimm  staff        8635 Mar 23 07:57 ls.cpp[0m
+-rw-r--r--   1 iankimm  staff          70 Mar 23 01:09 rshell.cpp[0m
+
+./test:
+total 112
+drwxr-xr-x   6 iankimm  staff         204 Mar 23 07:58 [32m[34m.[0m
+drwxr-xr-x  10 iankimm  staff         340 Mar 23 07:59 [32m[34m..[0m
+-rw-r--r--   1 iankimm  staff        4444 Mar 23 01:01 hw0[0m
+-rw-r--r--   1 iankimm  staff       34842 Mar 23 08:01 hw1[0m
+-rw-r--r--   1 iankimm  staff        6677 Mar 23 01:01 hw3[0m
+-rw-r--r--   1 iankimm  staff        2555 Mar 23 01:01 test.txt[0m
+
+./.git/branches:
+total 0
+drwxr-xr-x   2 iankimm  staff          68 Mar 23 01:00 [32m[34m.[0m
+drwxr-xr-x  13 iankimm  staff         442 Mar 23 07:59 [32m[34m..[0m
+
+./.git/hooks:
+total 80
+drwxr-xr-x  11 iankimm  staff         374 Mar 23 01:00 [32m[34m.[0m
+drwxr-xr-x  13 iankimm  staff         442 Mar 23 07:59 [32m[34m..[0m
+-rwxr-xr-x   1 iankimm  staff         452 Mar 23 01:00 [32mapplypatch-msg.sample[0m
+-rwxr-xr-x   1 iankimm  staff         896 Mar 23 01:00 [32mcommit-msg.sample[0m
+-rwxr-xr-x   1 iankimm  staff         189 Mar 23 01:00 [32mpost-update.sample[0m
+-rwxr-xr-x   1 iankimm  staff        1642 Mar 23 01:00 [32mpre-commit.sample[0m
+-rwxr-xr-x   1 iankimm  staff         398 Mar 23 01:00 [32mpre-applypatch.sample[0m
+-rwxr-xr-x   1 iankimm  staff        1352 Mar 23 01:00 [32mpre-push.sample[0m
+-rwxr-xr-x   1 iankimm  staff        4951 Mar 23 01:00 [32mpre-rebase.sample[0m
+-rwxr-xr-x   1 iankimm  staff        1239 Mar 23 01:00 [32mprepare-commit-msg.sample[0m
+-rwxr-xr-x   1 iankimm  staff        3611 Mar 23 01:00 [32mupdate.sample[0m
+
+./.git/info:
+total 8
+drwxr-xr-x   3 iankimm  staff         102 Mar 23 01:00 [32m[34m.[0m
+drwxr-xr-x  13 iankimm  staff         442 Mar 23 07:59 [32m[34m..[0m
+-rw-r--r--   1 iankimm  staff         240 Mar 23 01:00 exclude[0m
+
+./.git/logs:
+total 8
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:00 [32m[34m.[0m
+drwxr-xr-x  13 iankimm  staff         442 Mar 23 07:59 [32m[34m..[0m
+-rw-r--r--   1 iankimm  staff         366 Mar 23 01:01 HEAD[0m
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:00 [32m[34mrefs[0m
+
+./.git/objects:
+total 0
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:00 [32m[34m.[0m
+drwxr-xr-x  13 iankimm  staff         442 Mar 23 07:59 [32m[34m..[0m
+drwxr-xr-x   2 iankimm  staff          68 Mar 23 01:00 [32m[34minfo[0m
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:00 [32m[34mpack[0m
+
+./.git/refs:
+total 0
+drwxr-xr-x   5 iankimm  staff         170 Mar 23 01:00 [32m[34m.[0m
+drwxr-xr-x  13 iankimm  staff         442 Mar 23 07:59 [32m[34m..[0m
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:01 [32m[34mheads[0m
+drwxr-xr-x   3 iankimm  staff         102 Mar 23 01:00 [32m[34mremotes[0m
+drwxr-xr-x   2 iankimm  staff          68 Mar 23 01:00 [32m[34mtags[0m
+
+./.git/logs/refs:
+total 0
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:00 [32m[34m.[0m
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:00 [32m[34m..[0m
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:01 [32m[34mheads[0m
+drwxr-xr-x   3 iankimm  staff         102 Mar 23 01:00 [32m[34mremotes[0m
+
+./.git/objects/info:
+total 0
+drwxr-xr-x   2 iankimm  staff          68 Mar 23 01:00 [32m[34m.[0m
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:00 [32m[34m..[0m
+
+./.git/objects/pack:
+total 3016
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:00 [32m[34m.[0m
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:00 [32m[34m..[0m
+-r--r--r--   1 iankimm  staff        9556 Mar 23 01:00 pack-bdf8f6d0e94ee18b419ef01958f6ff8191c42fac.idx[0m
+-r--r--r--   1 iankimm  staff     1530220 Mar 23 01:00 pack-bdf8f6d0e94ee18b419ef01958f6ff8191c42fac.pack[0m
+
+./.git/refs/heads:
+total 16
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:01 [32m[34m.[0m
+drwxr-xr-x   5 iankimm  staff         170 Mar 23 01:00 [32m[34m..[0m
+-rw-r--r--   1 iankimm  staff          41 Mar 23 01:01 hw3[0m
+-rw-r--r--   1 iankimm  staff          41 Mar 23 01:00 master[0m
+
+./.git/refs/remotes:
+total 0
+drwxr-xr-x   3 iankimm  staff         102 Mar 23 01:00 [32m[34m.[0m
+drwxr-xr-x   5 iankimm  staff         170 Mar 23 01:00 [32m[34m..[0m
+drwxr-xr-x   3 iankimm  staff         102 Mar 23 01:00 [32m[34morigin[0m
+
+./.git/refs/tags:
+total 0
+drwxr-xr-x   2 iankimm  staff          68 Mar 23 01:00 [32m[34m.[0m
+drwxr-xr-x   5 iankimm  staff         170 Mar 23 01:00 [32m[34m..[0m
+
+./.git/logs/refs/heads:
+total 16
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:01 [32m[34m.[0m
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:00 [32m[34m..[0m
+-rw-r--r--   1 iankimm  staff         185 Mar 23 01:01 hw3[0m
+-rw-r--r--   1 iankimm  staff         190 Mar 23 01:00 master[0m
+
+./.git/logs/refs/remotes:
+total 0
+drwxr-xr-x   3 iankimm  staff         102 Mar 23 01:00 [32m[34m.[0m
+drwxr-xr-x   4 iankimm  staff         136 Mar 23 01:00 [32m[34m..[0m
+drwxr-xr-x   3 iankimm  staff         102 Mar 23 01:00 [32m[34morigin[0m
+
+./.git/refs/remotes/origin:
+total 8
+drwxr-xr-x   3 iankimm  staff         102 Mar 23 01:00 [32m[34m.[0m
+drwxr-xr-x   3 iankimm  staff         102 Mar 23 01:00 [32m[34m..[0m
+-rw-r--r--   1 iankimm  staff          32 Mar 23 01:00 HEAD[0m
+
+./.git/logs/refs/remotes/origin:
+total 8
+drwxr-xr-x   3 iankimm  staff         102 Mar 23 01:00 [32m[34m.[0m
+drwxr-xr-x   3 iankimm  staff         102 Mar 23 01:00 [32m[34m..[0m
+-rw-r--r--   1 iankimm  staff         190 Mar 23 01:00 HEAD[0m
+bash-3.2$ bin/ls -l [K[Ka -a
+[32m[34m.[0m          .DS_Store[0m  [32m[34mbin[0m        LICENSE[0m    [32m[34msrc[0m        
+[32m[34m..[0m         [32m[34m.git[0m       Makefile[0m   README.md[0m  [32m[34mtest[0m       
+bash-3.2$ bin/ls -[K[K[K[K[K[K[K[Kls -a -a
+.		.DS_Store	LICENSE		README.md	src
+..		.git		Makefile	bin		test
+bash-3.2$ ex[K[Kbin [K/ls -Rl[K[K[K[K[K[K[K[K[K[Kexit
 exit
 
-Script done on Mon Mar  9 13:33:07 2015
+Script done on Mon Mar 23 08:03:01 2015
