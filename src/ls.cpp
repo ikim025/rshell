@@ -46,7 +46,7 @@ void diropen(char *dir, DIR *md){
     }
 }
 
-
+//to make the beginning of ls -l
 void mode_to_letters( int mode, char str[] ){
     strcpy( str, "----------" );
     if ( S_ISDIR(mode) )  str[0] = 'd';
@@ -76,6 +76,7 @@ void l_flag(vector<string> list, int m){
         if(col == 0) col = 1;
         line = (list.size() + col - 1) / col;
         for(unsigned i = 0; i < line; i++){
+            //break point
             for(unsigned j = 0; j < col; j++){
                 if(i + line * j < list.size()){
                     unsigned found = list.at(i + line * j).find_last_of("/");
@@ -100,6 +101,7 @@ void l_flag(vector<string> list, int m){
         int total = 0;
         for(unsigned i = 0; i < list.size(); i++){
             struct stat mi;
+            //LFLAG stat
             if(stat(list.at(i).c_str(), &mi) == -1) perror("stat");
             total += (int)mi.st_blocks;
         }
@@ -191,6 +193,7 @@ void direc(vector<string> list, queue<string> *dirr){
     for(unsigned i = 0; i < list.size(); i++){
         unsigned found = list.at(i).find_last_of("/");
         strcpy(fname,list.at(i).substr(found+1).c_str());
+        //rpint
         sprintf(buf, "%s", list.at(i).c_str());
         if(stat(buf, &mi) == -1) perror("stat");
         if(S_ISDIR(mi.st_mode) && !(strcmp(fname, ".") == 0 || strcmp(fname, "..") == 0)) dirr -> push(buf);

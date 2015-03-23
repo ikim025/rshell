@@ -1,435 +1,398 @@
-#include <pwd.h>
-#include <sstream>
 #include <iostream>
+#include <string>
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
-#include <errno.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <cstring>
-#include <string>
-#include <vector>
-#include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <errno.h>
+#include <string.h>
+#include <fcntl.h>
 #include <signal.h>
 
-#include <boost/tokenizer.hpp>
-#include <boost/algorithm/string/regex.hpp>
-
 using namespace std;
-
-
-//global
-typedef boost::tokenizer<boost::char_separator<char> > tokenizer;
-boost :: char_separator<char> conn(";&|<>");
-boost :: char_separator<char> space("\t\r\n\a ");
-boost :: char_separator<char> ck(":");
 
 string curr_d(){
-	char currd[BUFSIZ];
-	getcwd(currd,sizeof(currd));
-	//if(!getcwd(currd,sizeof(currd)) != NULL) perror("getcwd");
-	if(currd == NULL) perror("getcwd");
-	return currd;
+    char currd[BUFSIZ];
+    getcwd(currd,sizeof(currd));
+    //if(!getcwd(currd,sizeof(currd)) != NULL) perror("getcwd");
+    if(currd == NULL) perror("getcwd");
+    return currd;
 }
-
-void handler(int num){
-        if(num == SIGINT) signal(SIGINT, SIG_IGN);
-        if(num == SIGTSTP) raise(SIGSTOP);
-}
-
-
-void sigcheck(){
-	if(signal(SIGINT, handler) == SIG_ERR) perror("SIGINT");
-	if(signal(SIGTSTP, handler) == SIG_ERR) perror("SIGTSTP");
-}
-
-
-
 
 char* dwhite(char *n){
-	char d[] = {" \n\t<>"};
-	int i = strcspn(n,d);
-	while(i == 0){
-		n++;
-		i = strcspn(n,d);
-	}
-	return strtok(n,d);
-}
-
-vector<vector<string> > parse(string &cmd, vector<int> list){
-    	vector<string> tk;
-    	for (unsigned i = 0; i < cmd.size(); i++){
-       		if (cmd[i] == ';') list.push_back(0);
-        	else if (cmd[i] == '|'){
-            		if (cmd[i+1] == '|') {
-                		i++;
-                		list.push_back(2);
-            		}
-            		else
-                		list.push_back(3);
-        	}
-        	else if ((cmd[i] == '&') && (cmd[i+1] == '&')){
-            		i++;
-            		list.push_back(1);
-        	}
-        	else if (cmd[i] == '<') list.push_back(4);
-        	else if (cmd[i] == '>'){
-            		if (cmd[i+1] == '>'){
-                		i++;
-                		list.push_back(6);
-            	}
-            	else list.push_back(5);
-        	}
+    char d[] = {" \n\t<>"};
+    int i = strcspn(n,d);
+    while(i == 0){
+        n++;
+        i = strcspn(n,d);
     }
-	vector<vector<string> > vk2;
-	vector<string> temp; 
-    	tokenizer tokens(cmd, conn);
-    	for (tokenizer::iterator z = tokens.begin(); z != tokens.end(); z++){ tk.push_back(*z); }
-    	for (unsigned j = 0; j < tk.size(); ++j){
-       		temp.clear();
-        	tokenizer spced(tk[j], space);
-        	for (tokenizer::iterator x = spced.begin(); x != spced.end(); x++){
-            		temp.push_back(*x);
-        	}
-        	vk2.push_back(temp);
-    	}
-    	return vk2;
+    return strtok(n,d);
 }
 
-void child_pro(string cmd, char **argv){
-	string curr;
-	string path = curr_d();
-	string previous = "..";
-	vector <string> path_list;
-	string envstring = getenv("PATH");
-	string check = cmd;
-	check.resize(1);
-	if(check == "."){
-		if(cmd.compare(0,previous.length(),previous) == 0){
-			while(path.back() != '/'){ path.pop_back(); }
-			path += cmd.substr(2);
-		}
-		else path += cmd.substr(1);
-		if(execv(path.c_str(), argv) == -1) perror("execv");
-	}
-	else{
-		tokenizer tk(envstring,ck);
-		for(tokenizer :: iterator i = tk.begin(); i != tk.end(); i++){
-			path_list.push_back(*i);
-		}
-		if(path_list.back().back() == '.') path_list.back().pop_back();
-		for(unsigned i = 0; i < path_list.size(); i++){
-			curr = path_list.at(i) + '/' + cmd;
-			execv(curr.c_str(), argv);
-		}
-	}
+void handler(int sig){
+    if(signal(SIGINT, SIG_IGN) == SIG_ERR)
+        perror("SIGINT");
+    else if(signal(SIGTSTP, SIG_DFL) == SIG_ERR)
+        perror("signal Z");
+    if(kill(getpid(), SIGTSTP) == -1)
+        perror("kill");
 }
 
-void execute(vector<vector<string> > &vec, vector<int> &list){
-	int con = 0;
-	int cs = 0;
-	int pick = 0;
-	string path;
-	string previous = "..";
-	string temp;
-    	char * envstring = getenv("HOME");
-    	for(unsigned i = 0; i < vec.size(); i++){
-		path = curr_d();
-		if(vec.at(i).at(0) == "cd"){
-			if(vec.at(i).size() >= 2){
-				temp = vec.at(i).at(1);
-				temp.resize(1);
-			}
-			if(temp == "\0") {
-				if(chdir(envstring) == -1) perror("chdir.home");
-				continue;
-			}
-			else{
-				if(temp == "~"){
-					path = getenv("HOME");
-					//path = getenv("PATH");
-					//path = getenv("PATH") + vec.at(i).at(1).substr(1);
-					path += vec.at(i).at(1).substr(1);
-					if(chdir(path.c_str()) == -1) perror("chdir");
-				}
-				else if(temp == "/"){
-					if(chdir(vec.at(i).at(1).c_str()) == -1) perror("chdir");
-				}
-                        	else if(temp == "."){
-                                	//if(vec.a
-					if(vec.at(i).at(1).compare(0,previous.length(), previous) == 0){
-                                        	while(path.back() != '/') { path.pop_back(); }
-                                        	path += vec.at(i).at(1).substr(2);
-                                	}
-                                	else path += vec.at(i).at(1).substr(1);
-                                	if(chdir(path.c_str()) == -1) perror("chdir");
-				}	
-                        	else{
-                                	path += '/' + vec.at(i).at(1);
-                                	if(chdir(path.c_str()) == -1) perror("chdir");
-				}
-				continue;
-			}
-		}
 
-		if (i < list.size())
-                con = list.at(i);
-        	else con = 0;
-        	if (con > 2 && con <6) i+= pick;
-        	vector<char *> argument(vec.at(i).size() + 1);
-        	for(unsigned j = 0; j < vec.at(i).size(); ++j){
-        	   	argument.at(j) = &vec[i][j][0];
-        	}
-        	int pid = fork();
-        	switch(pid){
-            	  case -1:
-                	perror("fork");
-            	  	exit(1);
-		  case 0:
-                	/*if(execvp(vec[i][0].c_str(), argument.data()) == -1){
-                    		perror("execvp");
-                	}*/
-			child_pro(vec.at(i).at(0),argument.data());
+int check(char *ptr){
+    return (*ptr >= '0' && *ptr <= '9' );
+}
 
-            	  default:
-                	if(wait(&cs) == -1){
-                    		perror("wait");
-                	}
-                	if((cs != 0 && con == 1) || (cs == 0 && con == 2)) return;
+
+int red( char *input, char **argv) {
+    
+    int flag;
+    int in = 0;
+    int out;
+    char *file, *ptin, *ptout;
+    char tin[1024];
+    char tout[1024];
+    char fileo[1024];
+    char ms[1024];
+    char tracker[2];
+    int trr =0;
+    
+    char *buf = input;
+    for(int i = 0; i < 10; i++){
+        flag = 0;
+        out = 1;
+        if ( (ptin = strstr(buf, "<")) != NULL ) {
+            file = NULL;
+            strcpy(tin, ptin+1);
+            file = strtok(tin," \n\t<>");
+            if ( file == NULL ) {
+                cout << "error" << endl;
+            }
+            if ( check(ptin - 1)){
+                char value[2];
+                strncpy(value, ptin - 1, 1);
+                value[1] = 0;
+                in = atoi(value);
+                *(ptin -1) = ' ';
+            }
+            buf = ptin +1;
+            int dp = -1;
+            
+          
+            if ( file != NULL )
+                if((dp = open (file, O_RDONLY)) == -1) perror("open");
+            
+
+            if ( dp != -1 ) {
+                if((close ( in )) == -1) perror("close");
+                if((dup( dp )) == -1) perror("dup");
+                if((close ( dp )) == -1) perror("close");
+            }
+        }
+        
+        if ( (ptout = strstr(buf, ">")) != NULL){
+            if(*(ptout + 1 ) == '>'){
+                strcpy(tout, ptout+2);
+                flag = 1;
+                *ptout = 0;
+                buf = ptout +2;
+            }
+            else{
+                strcpy(tout, ptout+1);
+                buf = ptout + 1;
+            }
+            *ptout = 0;
+            char *pbuf;
+            pbuf = strtok(tout, " \t\n<>");
+            strcpy(fileo, pbuf);
+            if ( check(ptout - 1)){
+                char value[2];
+                strncpy(value, ptout - 1, 1);
+                value[1] = 0;
+                out = atoi(value);
+                *(ptout -1) = ' ';
+            }
+            int cust = 0;
+            
+            if(flag == 0){
+                if((cust = open(fileo, O_WRONLY | O_CREAT | O_TRUNC, S_IRWXU | S_IRWXG | S_IRWXO)) == -1) perror("open");
+            }
+            else if(flag == 1){
+                if((cust = open(fileo, O_WRONLY | O_CREAT | O_APPEND , S_IRWXU | S_IRWXG | S_IRWXO)) == -1) perror("open");
+            }
+            if( cust != -1){
+                if((close(out)) == -1) perror("close") ;
+                if((dup( cust)) == -1) perror("dup");
+                if((close(cust)) == -1) perror("close");
+            }
+            
+        }
+        else if ( (ptin = strstr(buf, "<<<")) != NULL){
+            char *istart, *ilast;
+            istart = strstr(ptin +3 , "\"" );
+            ilast = strstr(istart +1, "\"");
+            strncpy(ms, istart+1, ilast-istart-1);
+            ms[ilast-istart-1] = 0;
+            trr = 1;
+        }
+        if ( ptin  != NULL ) *ptin  = 0;
+        if ( ptout != NULL ) *ptout = 0;
+    }
+    
+    if(trr == 1){
+        int pip[2];
+        if((pipe(pip)) == -1)perror("pipe");
+        int nval;
+        nval = write(pip[1], ms, strlen(ms));
+        if(nval < 0)
+            perror("write");
+        strcpy(tracker, "\n");
+        tracker[1] = 0 ;
+        nval = write(pip[1], tracker, strlen(tracker));
+        if(nval < 0)
+            perror("write ");
+        
+        if((dup2(pip[0], 0)) == -1) perror("dup2");
+        if((close(pip[1])) == -1) perror("close");
+    }
+    
+    int final;
+    int index = 0;
+    argv[index] = strtok(input, " \t\n");
+    while(argv[index] != NULL){
+        index ++;
+        argv[index] = strtok(NULL, " \t\n");
+    }
+    argv[index +1] = NULL;
+    final = index + 1;
+    return final;
+}
+
+int parse(char *input, char **argv){
+    char **command = new char *[50];
+    char *hp;
+    int nc = 0;
+    int tr;
+    int background_flag;
+    
+    char * cur_pt;
+    background_flag = 0;
+    if((cur_pt = strstr(input, "&")) != NULL){
+        background_flag = 1;
+        *cur_pt = ' ';
+    }
+    
+    hp = input;
+    tr  = 0;
+    int nlen = strlen(input);
+    for( int i=0; i < nlen ; i++) {
+        if(strncmp (&input[i], "|", 1 ) == 0 ) {
+            command[tr] = hp;
+            hp = &input[i+1];
+            input[i] = 0;
+            tr++;
         }
     }
-}
-
-
-
-
-int main(){
-
-
-	char *user = getlogin();
-	char host[100]; 
- 	gethostname(host,sizeof host);
-	
-	string path = curr_d();
-	while(1){
-		path = curr_d();
-		vector<int> p;
-		string cmd;
-       		vector<vector<string> > final;
-       		std :: cout << user << "@" << host 
-			    << ":" << path << "$ ";
-        	getline(cin,cmd);
-        	if(cmd == "exit") { return 0;}
-		sigcheck();
-        	if(!cmd.empty()){
-            		cmd.erase(find(cmd.begin(), cmd.end(), '#'), cmd.end());
-            		vector<vector<string> >final = parse(cmd,p);
-            		execute(final,p);
-		}
-	}
-	return 0;
-}
-
-
-
-
-/*#include <iostream>
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/wait.h>
-#include <fcntl.h>
-#include <string>
-#include <string.h>
-#include <stdlib.h>
-#include <stdio.h>
-
-//Friends advised me for a global variables.
-char A[312];
-char B[312];
-int CTR1 = 0;
-int CTR2 = 0;
-int TRCK1 = 0;
-int TRCK2 = 0;
-
-//remove the lines before the file name for io redirection
-char* dwhite(char *n){
-	char d[] = {" \n\t<>"};
-	int i = strcspn(n,d);
-	while(i == 0){
-		n++;
-		i = strcspn(n,d);
-	}
-	return strtok(n,d);
-}
-
-void com(char* b, char*arg[]){
-	int counter = 0;
-	char d[] = " \t\n";
-	char *ck = strtok(b,d);
-	char * temp = NULL;
-	while(ck != temp){
-		arg[counter++] = ck;
-		//counter ++;
-		//ck++;
-		ck = strtok(temp,d);
-	}
-	arg[counter] = temp;
-}
-
-//io redirection/ check
-void iod(char* buffer){
-	char *temp = buffer;
-	while(*temp != '\0'){
-		if(*temp == '<'){
-			*temp = '\0';
-			CTR1 = 1;
-			temp ++;
-			strcpy(A, dwhite(temp));
-		}
-		//wrong
-		else if(*temp == '>'){
-			*temp = '\0';
-			CTR2 = 1;
-			temp ++;
-			strcpy(B,dwhite(temp));
-		}
-		//if(*temp == '|'){
-		
-		//}
-		//else
-	temp++;
-	}
-}
-
-void cw(char* arg[], int pi[]){
-	if(TRCK1 > 0){
-		if(dup2(TRCK1,STDIN_FILENO) < 0)
-			perror("dup2");
-		close(TRCK1);
-	}
-	if(TRCK2 > 0){
-		if(dup2(TRCK2,STDOUT_FILENO) < 0)
-			perror("dup2");
-		close(TRCK2);
-	}
-	if(execvp(arg[0],arg) < 0)
-		perror("execution");
-	exit(1);
-}
-int main(){
-	char b[312];
-	char * arg[100];
-
-	//set up the global
-	CTR1 = 0;
-	CTR2 = 0;
-	TRCK1 = 0;
-	TRCK2 = 0;
-	while(1){	
-		fputs("$ ", stdout);
-		fgets(b, 312, stdin);
-	        iod(b);
-		com(b,arg);
-		if(CTR1 == 1){
-                	TRCK1 = open(A, O_RDONLY);
-                	if(TRCK1 == -1)
-                        	perror("open");
-        	}
-        	if(CTR2 == 1){
-                	TRCK2 = open(B, O_RDWR | O_CREAT, 0666);
-                	if(TRCK2 == -1)
-                        	perror("open");
-        	}
-      		int pi[2];
-        	if( pipe(pi) < 0)
-                	perror("pipe");
-        	
-		//fork
-		int pid = fork();
-        	switch(pid){
-                	case -1:
-                       	 perror("fork");
-                      	 break;
-                	case 0:
-                         cw(arg,pi);
-                         break;
-                	default:
-                         if(wait(0) == -1)
-                                 exit(-1);
-                                 break;
-        	}
-		if(TRCK1 > 0){
-         	       if(close(TRCK1) == -1)
-               	       		perror("close");
-        	}
-        	if(TRCK2 > 0){
-                	if(close(TRCK2) == -1)
-                        	perror("close");
-        	}
-		CTR1 = 0;
-		CTR2 = 0;
-		TRCK1 = 0;
-		TRCK2 = 0;
-		
-	}
-	return 0;
-}
-
-
-
-
-
-using namespace std;
-
-void parse(char *cd, char **par){
-    for(int i = 0; i < 512; i++){
-        par[i] = strsep(&cd, " ");
-        if(par[i] == NULL)
-            break;
-    }
-}
-
-int ex(char** par){
-    int pid = fork();
-    if(pid == -1){
-        perror("There was an error with fork(). ");
-        exit(1);
-    }
-    else if(pid == 0){
-        execvp(par[0], par);
-        return 0;
+    command[tr] = hp;
+    nc = tr;
+    
+    int pid;
+    int st;
+    int npip[2];
+    int  pip[2];
+    st = 0;
+    
+    if(nc == 0){
+        
+        pid = fork ();
+        if ( pid == -1 ) {
+            perror("fork");
+        } else if ( pid == 0 ) {
+            red( command[0], argv );
+            if ( execvp ( argv[0], argv ) == -1 )
+                perror("execvp" );
+            exit(errno);
+        } else if ( pid > 0) {
+            if(background_flag == 0){
+                if((wait( &st )) == -1) perror("wait");
+                return st;
+            }
+            else{
+                return 0;
+            }
+        }
+        
     }
     else{
-        waitpid(pid, 0, 0);
-        return 1;
+        if((pipe(pip)) == -1) perror("pipe");
+        switch( pid = fork()){
+            case 0:
+                red( command[0], argv );
+                
+                if((dup2( pip[1], 1)) == -1) perror("dup2");
+                if((close( pip[0] )) == -1) perror("close");
+                
+                if ( execvp( argv[0], argv ) == -1 )
+                    perror( "execvp ");
+                exit( errno );
+            case -1:
+                perror("fork ");
+                exit(1);
+        }
+        for(int j= 1; j < nc ; j++){
+            if((pipe(npip)) == -1) perror("pipe");
+            switch( pid = fork()){
+                case 0:
+                    red( command[j], argv );
+                    
+                    if((dup2( pip[0], 0)) == -1) perror("dup2");
+                    if((close( pip[1] )) == -1) perror("close");
+                    if((dup2( npip[1], 1)) == -1) perror("dup2");
+                    if((close( npip[0])) == -1) perror("close");
+                    
+                    if ( execvp( argv[0], argv ) == -1 )
+                        perror( "exevp ");
+                    exit( errno );
+                case -1:
+                    perror("fork ");
+                    exit(1);
+            }
+            if((close( pip[0])) == -1) perror("close");
+            if((close( pip[1])) == -1) perror("close");
+            pip[0] = npip[0];
+            pip[1] = npip[1];
+        }
+        switch( pid = fork()) {
+            case 0:
+                red( command[nc], argv );
+                
+                if((dup2( pip[0], 0)) == -1) perror("dup2");
+                if((close( pip[1] )) == -1) perror("close");
+                
+                if ( execvp ( argv[0], argv ) == -1 )
+                    perror( "exevp ");
+                exit ( errno );
+            case -1:
+                perror("fork ");
+                exit(1);
+        }
+        if((close( pip[0] )) == -1) perror("close");
+        if((close( pip[1] )) == -1) perror("close");
+        if(background_flag == 0){
+            while((pid = wait(&st)) != -1)
+                if(pid == -1) perror("wait");
+            return st;
+        }
+        else{
+            return 0;
+        }
     }
+    
+    return st;
 }
 
-int main(int argc, char **argv){
-    char cmd[512];
-    char *par[512];
-
-    int ending = 0;
-    while(ending == 0){
-        std :: cout << "$ ";
-        cin >> cmd;
-        if(cmd[strlen(cmd) - 1] == '\n')
-            cmd[strlen(cmd) - 1] = '\0';
-        parse(cmd, par);
-        if((cmd[0] == 'e' && cmd[1] == 'x' && cmd[2] == 'i' && cmd[3] == 't') || ex(par) == 0)
-            ending = 1;
+int main(){
+    
+    if(signal(SIGINT, handler) == SIG_ERR){
+        perror("CTRL-C");
+    }
+    if(signal(SIGTSTP, handler) == SIG_ERR){
+        perror("CTRL-Z");
+    }
+    char *user = getlogin();
+    char host[100];
+    gethostname(host,sizeof host);
+    
+    string path = curr_d();
+    
+    while(1){
+        path = curr_d();
+        std :: cout << user << "@" << host
+        << ":" << path << "$ ";
+        
+        char cmd[1024];
+        char buf[1024];
+        char * hp, * next;
+        int mystat;
+        bool stat1;
+        
+        cin.getline(cmd,1024);
+        
+        unsigned int i = 0;
+        while(i < strlen(cmd)){
+            if(cmd[i] == '#'){
+                cmd[i] = '\0';
+                break;
+            }
+            i++;
+        }
+        
+        if(!strcmp(cmd, "exit")) exit(1);
+        
+        char ** argv;
+        
+        argv = new char *[50];
+        
+        if(strstr(cmd,";") != NULL){
+            hp = cmd;
+            next = strstr(hp,";");
+            while(next != NULL){
+                for(int i =0; i < 1024; i++) buf[i]=0;
+                strncpy(buf,hp,next-hp);
+                mystat = parse(buf, argv);
+                hp = next + 1;
+                next = strstr(hp,";");
+            }
+            
+            for(int i =0; i < 1024; i++) buf[i]=0;	
+            strcpy(buf, hp);
+            mystat = parse(buf, argv);
+        }
+        
+        else if(strstr(cmd,"&&") != NULL){
+            hp = cmd;
+            stat1 = true;
+            next = strstr(hp,"&&");
+            while(next != NULL && stat1){
+                for(int i =0; i < 1024; i++) buf[i]=0;
+                strncpy(buf,hp,next-hp);	
+                mystat = parse(buf, argv);
+                if(mystat != 0) stat1 = false;
+                hp = next+2;
+                next = strstr(hp,"&&");
+            }
+            if(stat1){
+                for(int i =0; i < 1024; i++) buf[i]=0;	
+                strcpy(buf, hp);
+                mystat = parse(buf, argv);
+            }
+        }
+        
+        else if(strstr(cmd,"||") != NULL){
+            hp = cmd;
+            stat1 = true;
+            next = strstr(hp,"||");
+            while(next != NULL && stat1){
+                for(int i =0; i < 1024; i++) buf[i]=0;
+                strncpy(buf,hp,next-hp);	
+                mystat = parse(buf, argv);
+                if(mystat == 0) stat1 = false;
+                hp = next+2;
+                next = strstr(hp,"||");
+            }
+            if(stat1){
+                for(int i =0; i < 1024; i++) buf[i]=0;	
+                strcpy(buf, hp);
+                mystat = parse(buf, argv);
+            }
+        }
+        
+        else{
+            mystat = parse(cmd,argv);
+        }
+        
+        delete[] argv;
     }
     return 0;
-
-
-
-
-
-
-///////////////////////////hw2
-
-
-}*/
+}
